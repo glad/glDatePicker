@@ -1,7 +1,7 @@
 /*
 	glDatePicker style inspired by the calendar app in FireFly 3.0 rom
 
-	http://code.gautamlad.com/gldatepicker/
+	http://code.gautamlad.com/glDatePicker/
 	https://github.com/glad/glDatePicker/
 	http://forum.xda-developers.com/showthread.php?t=914284
 */
@@ -10,7 +10,7 @@
 .gldp-android
 {
 	float:left;
-	font-family: "trebuchet ms" !important;
+	font-family:"trebuchet ms" !important;
 	background-color:#222 !important;
 	font-size:0.8em !important;
 	font-weight:bold !important;
@@ -20,6 +20,7 @@
 .gldp-android table
 {
 	border-spacing:1px;
+	border-collapse:inherit;
 }
 
 /* Default style of cell */

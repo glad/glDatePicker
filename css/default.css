@@ -1,7 +1,7 @@
 /*
 	glDatePicker default style
 
-	http://code.gautamlad.com/gldatepicker/
+	http://code.gautamlad.com/glDatePicker/
 	https://github.com/glad/glDatePicker/
 */
 
@@ -9,7 +9,7 @@
 .gldp-default
 {
 	float:left;
-	font-family: "trebuchet ms" !important;
+	font-family:"trebuchet ms" !important;
 	background-color:#ccc !important;
 	font-size:0.8em !important;
 	font-weight:bold !important;
@@ -19,6 +19,7 @@
 .gldp-default table
 {
 	border-spacing:1px;
+	border-collapse:inherit;
 }
 
 /* Default style of cell */
