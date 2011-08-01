@@ -6,7 +6,7 @@
 	<meta name="keywords" content="datepicker, date picker, calendar, date control, jQuery" />
 	<meta name="author" content="Gautam Lad" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>glDatePicker</title>
+	<title>glDatePicker - A simple, customizable, lightweight date picker calendar plugin for jQuery</title>
 
 	<link href="site/css/default.css" rel="stylesheet" type="text/css" />
 	<link href="site/css/syntaxhighlighter.css" rel="stylesheet" type="text/css" />
@@ -44,7 +44,7 @@
 					It includes the following features:
 				</p>
 				<ul>
-					<li>forward and back navigation</li>
+					<li>forward and backward navigation</li>
 					<li>current date highlight</li>
 					<li>restricting selection of dates outside of a range</li>
 					<li>restricting selection of dates beyond N-days from start date</li>
@@ -189,14 +189,15 @@
 						// first date that can be selected.
 						// Possible values:
 						// -1 : Use beginning of current month
-						// Date() : A javascript date, for example new Date("September 5, 2011")
+						// Date() : A javascript date, for example: new Date("September 5, 2011")
 						startDate: -1,
 
-						// Set last selectable date if set to a positive number or an actual date.
+						// Set last selectable date.  Can be an actual date or a number indicating
+						// offset from the startDate value.
 						// Possible values:
 						// -1 : No end date
-						// +ve : A positive number indicating # of days from today
-						// Date() : A javascript date, for example: new Date("September 5, 2012")
+						// +ve : A positive number indicating # of days from startDate
+						// Date() : A javascript date, for example: new Date("September 5, 2011")
 						endDate: -1
 
 						// Show previous and next arrows.  Arrows will be automatically shown or
