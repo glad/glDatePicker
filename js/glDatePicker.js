@@ -62,7 +62,8 @@
 				// Bind click and focus event to show
 				self
 					.click(methods.show)
-					.focus(methods.show);
+					.focus(methods.show)
+					.blur(methods.hide);
 
 				// If always showing, trigger click causing it to show
 				if(settings.showAlways)
