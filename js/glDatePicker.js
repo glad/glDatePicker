@@ -68,7 +68,7 @@
 				// If always showing, trigger click causing it to show
 				if(settings.showAlways)
 				{
-					setTimeout(function() { self.trigger("click"); }, 50);
+					setTimeout(function() { self.trigger("focus"); }, 50);
 				}
 
 				// Bind click elsewhere to hide
@@ -256,27 +256,9 @@
 				);
 			}
 
-			// Show/hide calendar based on mouse events
+			// Show calendar
 			var calendar = $("#"+calId);
-			calendar
-				.html(html)
-				.show(0, function()
-				{
-					clearTimeout(settings.tid);
-				})
-				.mousemove(function(e)
-				{
-					clearTimeout(settings.tid);
-				})
-				.mouseleave(function()
-				{
-					var self = $(this);
-					settings.tid = setTimeout(function()
-					{
-						self.removeClass();
-						methods.hide.apply(target);
-					}, 1000);
-				});
+			calendar.html(html).slideDown(200);
 
 			// Handle previous/next clicks
 			$("[class*=-prevnext]", calendar).click(function(e)
