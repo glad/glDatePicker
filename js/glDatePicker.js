@@ -59,8 +59,10 @@
 				if(options) { settings = $.extend(settings, options); }
 				self.data("settings", settings);
 
-				// Bind click event to show
-				self.click(methods.show);
+				// Bind click and focus event to show
+				self
+					.click(methods.show)
+					.focus(methods.show);
 
 				// If always showing, trigger click causing it to show
 				if(settings.showAlways)
