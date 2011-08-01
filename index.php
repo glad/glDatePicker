@@ -130,7 +130,8 @@
 					$("#date5").glDatePicker(
 					{
 						showPrevNext: false,
-						allowOld: false
+						allowOld: false,
+						startDate: new Date()
 					});</pre>
 				<br/><br/>
 				<!-- END Example #5 -->
@@ -285,7 +286,8 @@
 			$("#date5").glDatePicker(
 			{
 				showPrevNext: false,
-				allowOld: false
+				allowOld: false,
+				startDate: new Date()
 			});
 
 			// Use a custom callback to show date in a diffent format
