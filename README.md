@@ -29,7 +29,10 @@ Make sure you have a textbox that you can tie the plugin to:
     <input type="text" id="date" />
 
 Finally bind the plugin to the input textbox and set any options you want:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 26b000a7a4ce346be5cab263fed08e7e6ddb68ca
     $("#date").glDatePicker(
     {
         allowOld: false,
