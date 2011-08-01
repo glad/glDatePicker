@@ -14,6 +14,7 @@
 	background-color:#222 !important;
 	font-size:0.8em !important;
 	font-weight:bold !important;
+	border:solid 1px #222;
 }
 
 /* Table style */
@@ -23,14 +24,18 @@
 	border-collapse:inherit;
 }
 
+/* Default row height */
+.gldp-android tr
+{
+	line-height:28px;
+}
+
 /* Default style of cell */
 .gldp-android td
 {
 	margin:0;
 	padding:0;
 	width:33px;
-	height:23px;
-	line-height:25px;
 	text-align:center;
 }
 
@@ -108,6 +113,7 @@
 .gldp-android-noday
 {
 	background-color:#222;
+	border:solid 1px #222;
 	color:#666;
 	font-weight:normal;
 	cursor:wait;

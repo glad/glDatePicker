@@ -1,12 +1,17 @@
 div.syntaxhighlighter
 {
 	background-color: #111 !important;
-	width:700px;
+	width:720px;
+	font-family:"lucida console","courier new";
+	line-height:1.5em;
+	font-size:0.8em;
 }
-.syntaxhighlighter table
+
+.syntaxhighlighter table, .syntaxhighlighter td
 {
 	padding:10px;
 }
+
 .syntaxhighlighter .line.alt1
 {
 }

@@ -76,33 +76,45 @@
 			});
 		},
 
+		// Show the calendar
 		show: function(e)
 		{
 			e.stopPropagation();
 			methods.update.apply($(this));
 		},
 
+		// Hide the calendar
 		hide: function()
 		{
-			var settings = $(this).data("settings");
+			var s = $(this).data("settings");
 
 			// Hide if not showing always
-			if(!settings.showAlways)
+			if(!s.showAlways)
 			{
-				$("#"+settings.calId+":not(.active)").slideUp(200);
+				$("#"+s.calId+":not(.active)").slideUp(200);
 			}
 		},
 
-		update:function(e)
+		// Set a new start date
+		setStartDate: function(e)
+		{
+			$(this).data("settings").startDate = e;
+		},
+
+		// Set a new end date
+		setEndDate: function(e)
+		{
+			$(this).data("settings").endDate = e;
+		},
+
+		// Render the calendar
+		update:function()
 		{
 			var target = $(this);
 			var settings = target.data("settings");
 
 			// Get the calendar id
 			var calId = settings.calId;
-
-			// Show Prev/Next buttons
-			var showPN = settings.showPrevNext;
 
 			// Get the starting date
 			var startDate = settings.startDate;
@@ -112,9 +124,21 @@
 				startDate.setDate(1);
 			}
 			startDate.setHours(0,0,0,0);
+			var startTime = startDate.getTime();
 
 			// Get the end date
-			var endDate = ((new String(settings.endDate)).match(/^\d+$/) == null) ? settings.endDate : null
+			var endDate = new Date(0);
+			if(settings.endDate != -1)
+			{
+				endDate = new Date(settings.endDate);
+				if((/^\d+$/).test(settings.endDate))
+				{
+					endDate = new Date(startDate);
+					endDate.setDate(endDate.getDate()+settings.endDate);
+				}
+			}
+			endDate.setHours(0,0,0,0);
+			var endTime = endDate.getTime();
 
 			// Get the current date to render
 			var theDate = target.data("theDate");
@@ -123,15 +147,15 @@
 			// Calculate the first and last date in month being rendered.
 			// Also calculate the weekday to start rendering on
 			var firstDate = new Date(theDate); firstDate.setDate(1);
+			var firstTime = firstDate.getTime();
 			var lastDate = new Date(theDate); lastDate.setMonth(theDate.getMonth()+1); lastDate.setDate(0);
-			var firstDay = firstDate.getDate();
+			var lastTime = lastDate.getTime();
 			var lastDay = lastDate.getDate();
-			var weekDay = firstDate.getDay();
 
 			// Calculate the last day in previous month
-			var prevDate = new Date(firstDate);
-				prevDate.setDate(0);
-			var prevDateLastDay = prevDate.getDate();
+			var prevDateLastDay = new Date(firstDate);
+				prevDateLastDay.setDate(0);
+				prevDateLastDay = prevDateLastDay.getDate();
 
 			// The month names to show in toolbar
 			var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -147,7 +171,7 @@
 
 				for(var x = 0; x < 7; x++, i++)
 				{
-					var p = ((prevDateLastDay - weekDay) + i + 1);
+					var p = ((prevDateLastDay - firstDate.getDay()) + i + 1);
 					var n = p - prevDateLastDay;
 					var c = (x == 0) ? "sun" : ((x == 6) ? "sat" : "day");
 
@@ -156,27 +180,21 @@
 					{
 						var today = new Date(); today.setHours(0,0,0,0);
 						var date = new Date(theDate); date.setHours(0,0,0,0); date.setDate(n);
+						var dateTime = date.getTime();
 	
 						// Test to see if it's today
-						c = (today.getTime() == date.getTime()) ? "today":c;
+						c = (today.getTime() == dateTime) ? "today":c;
 
 						// Test to see if we allow old dates
 						if(!settings.allowOld)
 						{
-							c = (date.getTime() < startDate.getTime()) ? "noday":c;
+							c = (dateTime < startTime) ? "noday":c;
 						}
 
 						// Test against end date
 						if(settings.endDate != -1)
 						{
-							if(endDate == null)
-							{
-								endDate = new Date();
-								endDate.setDate(endDate.getDate()+settings.endDate);
-							}
-							endDate.setHours(0,0,0,0);
-
-							c = (date.getTime() > endDate.getTime()) ? "noday":c;
+							c = (dateTime > endTime) ? "noday":c;
 						}
 					}
 					else
@@ -193,15 +211,22 @@
 				days += "<tr class='days'>"+row+"</tr>";
 			}
 
+			// Determine whether to show Previous arrow
+			var showP = ((startTime < firstTime) || settings.allowOld);
+			var showN = ((lastTime < endTime) || (endTime < startTime));
+
+			// Force override to showPrevNext on false
+			if(!settings.showPrevNext) { showP = showN = false; }
+
 			// Build the html for the control
 			var titleMonthYear = monthNames[theDate.getMonth()]+" "+theDate.getFullYear();
 			var html =
 				"<div class='**'>"+
 					"<table>"+
 						"<tr>"+ /* Prev Month/Year Next*/
-							((showPN) ? ("<td class='**-prevnext prev'>&#9668;</td>"):("<td></td>")) +
+							((showP) ? ("<td class='**-prevnext prev'>◄</td>"):("<td></td>")) +
 							"<td class='**-monyear' colspan='5'>{MY}</td>"+
-							((showPN) ? ("<td class='**-prevnext next'>&#9658;</td>"):("<td></td>")) +
+							((showN) ? ("<td class='**-prevnext next'>►</td>"):("<td></td>")) +
 						"</tr>"+
 						"<tr class='**-dow'>"+ /* Day of Week */
 							"<td>Sun</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td>"+
@@ -230,21 +255,24 @@
 
 			// Show/hide calendar based on mouse events
 			var calendar = $("#"+calId);
-			var tid = 0;
 			calendar
-				.html(html).show()
-				.mouseenter(function()
+				.html(html)
+				.show(0, function()
 				{
-					clearTimeout(tid);
+					clearTimeout(settings.tid);
+				})
+				.mousemove(function(e)
+				{
+					clearTimeout(settings.tid);
 				})
 				.mouseleave(function()
 				{
 					var self = $(this);
-					tid = setTimeout(function()
+					settings.tid = setTimeout(function()
 					{
 						self.removeClass();
 						methods.hide.apply(target);
-					}, 500);
+					}, 1000);
 				});
 
 			// Handle previous/next clicks
@@ -266,13 +294,11 @@
 			$("tr.days td:not(.noday)", calendar)
 				.mouseenter(function(e)
 				{
-					e.stopPropagation();
 					var css = "gldp-"+settings.cssName+"-"+$(this).children("div").attr("class");
 					$(this).removeClass(css).addClass(css+"-hover");
 				})
 				.mouseleave(function(e)
 				{
-					e.stopPropagation();
 					var css = "gldp-"+settings.cssName+"-"+$(this).children("div").attr("class");
 					$(this).removeClass(css+"-hover").addClass(css);
 				})

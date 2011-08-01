@@ -37,9 +37,9 @@
 			<div class="content">
 				<div id="about" class="title">about</div>
 				<p>
-					<b>glDatePicker</b> is a simple, customizable, lightweight date picker calendar plugin for <a href="http://jquery.com" target="_blank">jQuery</a> weighing in <span class="special">under 3.5KB compressed</span> (8KB uncompressed).
+					<b>glDatePicker</b> is a simple, customizable, lightweight date picker calendar plugin for <a href="http://jquery.com" target="_blank">jQuery</a> weighing in just over <span class="special">3.5KB compressed</span> (8KB uncompressed).
 					<br/>
-					<img src="site/img/screenshot.png" width="580" height="280" alt="Examle styles" />
+					<img src="site/img/screenshot.png" width="575" height="300" alt="Example styles" />
 					<br/>
 					It includes the following features:
 				</p>
@@ -47,8 +47,8 @@
 					<li>forward and back navigation</li>
 					<li>current date highlight</li>
 					<li>restricting selection of dates outside of a range</li>
-					<li>restricting selection fo date beyond N-days from today</li>
-					<li>Restricting forward / backwards month navigation</li>
+					<li>restricting selection of dates beyond N-days from start date</li>
+					<li>restricting forward / backwards month navigation</li>
 					<li>individual styles per date picker (in case you have multiples on one page)</li>
 				</ul>
 			</div>
@@ -58,13 +58,13 @@
 			<div class="content">
 				<div id="examples" class="title">examples</div>
 				<p>
-					Click on the textboxes below to see examples of the control with the settings shown.
+					Click on the text boxes to see examples of the control with the settings shown.
 					<br/><br/>
 				</p>
 
 				<!-- BEGIN Example #1 -->
 				<p>
-					<b>Example #1: Basic usage</b>
+					<b><span class="example">Example #1</span>: Basic usage</b>
 				</p>
 				<input type="text" id="date1" class="gldp" />
 				<br/><br/>
@@ -76,7 +76,7 @@
 
 				<!-- BEGIN Example #2 -->
 				<p>
-					<b>Example #2: Use a custom styled date picker (only for this control)</b>
+					<b><span class="example">Example #2</span>: Use a custom styled date picker (only for this control)</b>
 				</p>
 				<input type="text" id="date2" class="gldp" />
 				<br/><br/>
@@ -91,7 +91,7 @@
 
 				<!-- BEGIN Example #3 -->
 				<p>
-					<b>Example #3: Restricting selection to a specific date</b>
+					<b><span class="example">Example #3</span>: Restricting selection to a specific date</b>
 				</p>
 				<input type="text" id="date3" class="gldp" />
 				<br/><br/>
@@ -106,22 +106,24 @@
 
 				<!-- BEGIN Example #3 -->
 				<p>
-					<b>Example #4: Restricting selection of dates using days from today</b>
+					<b><span class="example">Example #4</span>: Restricting selection of dates N-days from start date</b>
 				</p>
 				<input type="text" id="date4" class="gldp" />
 				<br/><br/>
 				<pre class="brush:js">
-					// Set last selectable date to now + 5-days
+					// Set last selectable date to start date + 5-days and prevent old date selection
 					$("#date4").glDatePicker(
 					{
-						endDate: 5
+						endDate: 5,
+						startDate: new Date("September 5, 2011"),
+						allowOld: false
 					});</pre>
 				<br/><br/>
 				<!-- END Example #4 -->
 
 				<!-- BEGIN Example #5 -->
 				<p>
-					<b>Example #4: Hide prev/next arrows and prevent old dates selections</b>
+					<b><span class="example">Example #5</span>: Hide prev/next arrows and prevent old dates selections</b>
 				</p>
 				<input type="text" id="date5" class="gldp" />
 				<br/><br/>
@@ -138,7 +140,7 @@
 
 				<!-- BEGIN Example #6 -->
 				<p>
-					<b>Example #6: Using a custom callback to show date in a different format</b>
+					<b><span class="example">Example #6</span>: Using a custom callback to show date in a different format</b>
 				</p>
 				<input type="text" id="date6" class="gldp" />
 				<br/><br/>
@@ -163,21 +165,28 @@
 			<div class="content">
 				<div id="usage" class="title">usage</div>
 				<p>
-					Below are all the available settings that can be adjusted.  The values shown are the default setting values.
+					Below are all the available settings that can be adjusted and public methods that can be called.
+					The values shown are the default setting values.
 					<br/><br/>
 				</p>
 
 				<pre class="brush:js">
+					/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+					 * Settings
+					 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 					$("#date").glDatePicker(
 					{
 						// Name of the stylesheet to use.
 						// For example, if your css name is called doublerainbow
 						// then all all your css elements will need to be
 						// prefixed with .gldp-doublerainbow in your stylesheet.
-						// Use the /themes/default.css as a starting point.
+						// Use the /css/default.css as a starting point.
 						cssName: "default",
 
-						// Set starting date
+						// Set starting date.
+						// NOTE: Consider setting allowOld to false to make the startDate the
+						// first date that can be selected.
 						// Possible values:
 						// -1 : Use beginning of current month
 						// Date() : A javascript date, for example new Date("September 5, 2011")
@@ -190,11 +199,12 @@
 						// Date() : A javascript date, for example: new Date("September 5, 2012")
 						endDate: -1
 
-						// Show previous and next arrows if set to true.
+						// Show previous and next arrows.  Arrows will be automatically shown or
+						// hidden if set to true.  Set to false to force it never show.
 						// Possible values: true | false
 						showPrevNext: true,
 
-						// Allow selection of dates older than today if set to true.
+						// Allow selection of dates older than startDate if set to true.
 						// Possible values: true | false
 						allowOld: true,
 
@@ -225,7 +235,18 @@
 						//     }
 						// });
 						onChange: null
-					});</pre>
+					});
+
+
+					/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+					 * Public methods
+					 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+					// Set a new start date
+					$("#date").glDatePicker("setStartDate", new Date("September 5, 2011"));
+
+					// Set a new end date
+					$("#date").glDatePicker("setEndDate", new Date("September 5, 2011"));</pre>
 			</div>
 			<!-- END usage -->
 
@@ -238,9 +259,19 @@
 			</div>
 			<!-- END download -->
 
+			<!-- BEGIN download -->
+			<div class="content">
+				<div id="clone" class="title">clone from github</div>
+				Clone the latest source directly from the <a href="https://github.com/glad/glDatePicker/">github</a> repository.
+				<br/><br/>
+				<pre class="brush:bash">
+					$ git clone https://github.com/glad/glDatePicker.git</pre>
+			</div>
+			<!-- END download -->
+
 			<!-- BEGIN footer -->
 			<div class="footer">
-				<span class="copyright">copyright (c) 2011 <a href="http://gautamlad.com/">Gautam Lad</a>.  All rights reserved</span>
+				<span class="copyright">Copyright &#169; 2011 <a href="http://gautamlad.com/">Gautam Lad</a>.  All rights reserved</span>
 				<span class="contact"><a href="mailto:email@gautamlad.com">contact</a></span>
 			</div>
 			<!-- BEGIN footer -->
@@ -250,6 +281,7 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
 	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js" type="text/javascript"></script>
+	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushBash.js" type="text/javascript"></script>
 
 	<script type="text/javascript" src="js/glDatePicker.js"></script>
 	<script type="text/javascript">
@@ -276,10 +308,12 @@
 				endDate: new Date("September 5, 2011")
 			});
 
-			// Set last selectable date to now + 5-days
+			// Set last selectable date to start date + 5-days and prevent old date selection
 			$("#date4").glDatePicker(
 			{
-				endDate: 5
+				endDate: 5,
+				startDate: new Date("September 5, 2011"),
+				allowOld: false
 			});
 
 			// Hide prev/next buttons and prevent selection of dates older than today

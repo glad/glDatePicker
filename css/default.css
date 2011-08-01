@@ -12,7 +12,7 @@
 	font-family:"trebuchet ms" !important;
 	background-color:#ccc !important;
 	font-size:0.8em !important;
-	font-weight:bold !important;
+	border:solid 1px #888;
 }
 
 /* Table style */
@@ -22,14 +22,18 @@
 	border-collapse:inherit;
 }
 
+/* Default row height */
+.gldp-default tr
+{
+	line-height:28px;
+}
+
 /* Default style of cell */
 .gldp-default td
 {
 	margin:0;
 	padding:0;
 	width:33px;
-	height:23px;
-	line-height:25px;
 	text-align:center;
 }
 
@@ -37,17 +41,17 @@
 .gldp-default-prevnext
 {
 	font-family:"times new roman";
-	background-color:#ccc;
 	color:#222;
 	cursor:pointer;
+	font-weight:bold;
 }
 
 /* Month Year title */
 .gldp-default-monyear
 {
-	background-color:#ccc;
 	color:#222;
 	font-size:0.9em !important;
+	font-weight:bold;
 }
 
 /* Days of the week (Sun, Mon, ...) */
@@ -56,6 +60,7 @@
 	background-color:#f82200;
 	color:#eee;
 	font-size:0.8em !important;
+	font-weight:bold;
 }
 
 /* Selectable days */
@@ -64,6 +69,7 @@
 	background-color:#fff;
 	color:#222;
 	border:solid 1px #fff;
+	font-weight:bold;
 }
 .gldp-default-day-hover
 {
@@ -71,6 +77,7 @@
 	color:#f82200;
 	border:solid 1px #f82200;
 	cursor:pointer;
+	font-weight:bold;
 }
 
 /* Today */
@@ -79,6 +86,7 @@
 	background-color:#f82200;
 	color:#fff;
 	border:solid 1px #f82200;
+	font-weight:bold;
 }
 .gldp-default-today-hover
 {
@@ -86,6 +94,7 @@
 	color:#f82200;
 	border:solid 1px #f82200;
 	cursor:pointer;
+	font-weight:bold;
 }
 
 /* Weekends */
@@ -94,6 +103,7 @@
 	background-color:#fff;
 	color:#004f8f;
 	border:solid 1px #fff;
+	font-weight:bold;
 }
 .gldp-default-sat-hover, .gldp-default-sun-hover
 {
@@ -101,13 +111,14 @@
 	color:#004f8f;
 	border:solid 1px #f82200;
 	cursor:pointer;
+	font-weight:bold;
 }
 
-/* Non-selectable day.  Includes: previous/next month days and days that fall in the allowOld and endDate conditions */
+/* Non-selectable day.  Includes:previous/next month days and days that fall in the allowOld and endDate conditions */
 .gldp-default-noday
 {
 	background-color:#fff;
+	border:solid 1px #fff;
 	color:#666;
-	font-weight:normal;
 	cursor:wait;
 }
