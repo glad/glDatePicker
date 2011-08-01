@@ -226,9 +226,9 @@
 				"<div class='**'>"+
 					"<table>"+
 						"<tr>"+ /* Prev Month/Year Next*/
-							((showP) ? ("<td class='**-prevnext prev'>◄</td>"):("<td></td>")) +
+							("<td class='**-prevnext prev'>"+(showP ? "◄":"")+"</td>")+
 							"<td class='**-monyear' colspan='5'>{MY}</td>"+
-							((showN) ? ("<td class='**-prevnext next'>►</td>"):("<td></td>")) +
+							("<td class='**-prevnext next'>"+(showN ? "►":"")+"</td>")+
 						"</tr>"+
 						"<tr class='**-dow'>"+ /* Day of Week */
 							"<td>Sun</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td>"+
@@ -282,14 +282,17 @@
 			{
 				e.stopPropagation();
 
-				// Determine offset and set new date
-				var offset = $(this).hasClass("prev") ? -1 : 1;
-				var newDate = new Date(firstDate);
-					newDate.setMonth(theDate.getMonth()+offset);
+				if($(this).html() != "")
+				{
+					// Determine offset and set new date
+					var offset = $(this).hasClass("prev") ? -1 : 1;
+					var newDate = new Date(firstDate);
+						newDate.setMonth(theDate.getMonth()+offset);
 
-				// Save the new date and render the change
-				target.data("theDate", newDate);
-				methods.update.apply(target);
+					// Save the new date and render the change
+					target.data("theDate", newDate);
+					methods.update.apply(target);
+				}
 			});
 
 			// Highlight day cell on hover
