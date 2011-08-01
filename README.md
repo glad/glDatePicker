@@ -22,11 +22,15 @@ Installation / Usage
 Extract the js and css folders from the archive.
 
 Then add references to the stylesheet and javascript files in your page:
+
     <link href="css/default.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/glDatePicker.js"></script>
 
+
 Make sure you have a textbox that you can tie the plugin to:
+
     <input type="text" id="date" />
+
 
 Finally bind the plugin to the input textbox and set any options you want:
 
