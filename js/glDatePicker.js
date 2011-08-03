@@ -62,8 +62,7 @@
 				// Bind click and focus event to show
 				self
 					.click(methods.show)
-					.focus(methods.show)
-					.blur(methods.hide);
+					.focus(methods.show);
 
 				// If always showing, trigger click causing it to show
 				if(settings.showAlways)
@@ -83,18 +82,27 @@
 		show: function(e)
 		{
 			e.stopPropagation();
+
+			// Instead of catching blur we'll find anything that's made visible
+			methods.hide.apply($("._gldp").not($(this)));
+
 			methods.update.apply($(this));
 		},
 
 		// Hide the calendar
 		hide: function()
 		{
-			var s = $(this).data("settings");
-
-			// Hide if not showing always
-			if(!s.showAlways)
+			if($(this).length)
 			{
-				$("#"+s.calId+":not(.active)").slideUp(200);
+				var s = $(this).data("settings");
+
+				// Hide if not showing always
+				if(!s.showAlways)
+				{
+					// Hide the calendar and remove class from target
+					$("#"+s.calId).slideUp(200);
+					$(this).removeClass("_gldp");
+				}
 			}
 		},
 
@@ -184,7 +192,7 @@
 						var today = new Date(); today.setHours(0,0,0,0);
 						var date = new Date(theDate); date.setHours(0,0,0,0); date.setDate(n);
 						var dateTime = date.getTime();
-	
+
 						// Test to see if it's today
 						c = (today.getTime() == dateTime) ? "today":c;
 
@@ -259,6 +267,9 @@
 			// Show calendar
 			var calendar = $("#"+calId);
 			calendar.html(html).slideDown(200);
+
+			// Add a class to make it easier to find when hiding
+			target.addClass("_gldp");
 
 			// Handle previous/next clicks
 			$("[class*=-prevnext]", calendar).click(function(e)
