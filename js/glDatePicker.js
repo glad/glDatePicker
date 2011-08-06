@@ -28,6 +28,14 @@
 	THE SOFTWARE.
 
 	Changelog:
+		Version 1.1 - Sat Aug 6 2011
+			- Last date shown incorrectly after selecting it
+			- Introduces selectedDate option for visually indicating selected date
+			- Selected date can also be set
+			- Homepage updated with selectedDate example (in #4)
+			- Syntaxhighlighter files referenced locally
+			- Updated styles with selectedDate class
+
 		Version 1.0 - Mon Aug 1 2011
 			- Initial release
 */
@@ -39,6 +47,7 @@
 		cssName: "default",
 		startDate: -1,
 		endDate: -1,
+		selectedDate: -1,
 		showPrevNext: true,
 		allowOld: true,
 		showAlways: false,
@@ -118,6 +127,12 @@
 			$(this).data("settings").endDate = e;
 		},
 
+		// Set a new selected date
+		setSelectedDate: function(e)
+		{
+			$(this).data("settings").selectedDate = e;
+		},
+
 		// Render the calendar
 		update:function()
 		{
@@ -151,6 +166,20 @@
 			endDate.setHours(0,0,0,0);
 			var endTime = endDate.getTime();
 
+			// Get the selected date
+			var selectedDate = new Date(0);
+			if(settings.selectedDate != -1)
+			{
+				selectedDate = new Date(settings.selectedDate);
+				if((/^\d+$/).test(settings.selectedDate))
+				{
+					selectedDate = new Date(startDate);
+					selectedDate.setDate(selectedDate.getDate()+settings.selectedDate);
+				}
+			}
+			selectedDate.setHours(0,0,0,0);
+			var selectedTime = selectedDate.getTime();
+
 			// Get the current date to render
 			var theDate = target.data("theDate");
 				theDate = (theDate == -1 || typeof theDate == "undefined") ? startDate : theDate;
@@ -159,7 +188,7 @@
 			// Also calculate the weekday to start rendering on
 			var firstDate = new Date(theDate); firstDate.setDate(1);
 			var firstTime = firstDate.getTime();
-			var lastDate = new Date(theDate); lastDate.setMonth(theDate.getMonth()+1); lastDate.setDate(0);
+			var lastDate = new Date(firstDate); lastDate.setDate(0);
 			var lastTime = lastDate.getTime();
 			var lastDay = lastDate.getDate();
 
@@ -206,6 +235,12 @@
 						if(settings.endDate != -1)
 						{
 							c = (dateTime > endTime) ? "noday":c;
+						}
+
+						// Test against selected date
+						if(settings.selectedDate != -1)
+						{
+							c = (dateTime == selectedTime) ? "selected":c;
 						}
 					}
 					else
@@ -290,7 +325,7 @@
 			});
 
 			// Highlight day cell on hover
-			$("tr.days td:not(.noday)", calendar)
+			$("tr.days td:not(.noday, .selected)", calendar)
 				.mouseenter(function(e)
 				{
 					var css = "gldp-"+settings.cssName+"-"+$(this).children("div").attr("class");
@@ -298,8 +333,11 @@
 				})
 				.mouseleave(function(e)
 				{
-					var css = "gldp-"+settings.cssName+"-"+$(this).children("div").attr("class");
-					$(this).removeClass(css+"-hover").addClass(css);
+					if(!$(this).hasClass("selected"))
+					{
+						var css = "gldp-"+settings.cssName+"-"+$(this).children("div").attr("class");
+						$(this).removeClass(css+"-hover").addClass(css);
+					}
 				})
 				.click(function(e)
 				{
@@ -317,6 +355,9 @@
 					{
 						settings.onChange(target, newDate);
 					}
+
+					// Save selected
+					settings.selectedDate = newDate;
 
 					// Hide calendar
 					methods.hide.apply(target);

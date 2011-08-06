@@ -80,6 +80,14 @@
 	font-weight:bold;
 }
 
+/* Selected days */
+.gldp-default-selected
+{
+	background-color:#fee;
+	color:#222;
+	border:solid 1px #f82200;
+}
+
 /* Today */
 .gldp-default-today
 {

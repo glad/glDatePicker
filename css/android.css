@@ -79,6 +79,15 @@
 	cursor:pointer;
 }
 
+/* Selected days */
+.gldp-android-selected
+{
+	background-color:#024;
+	color:#fff;
+	border:solid 1px #008faf;
+	cursor:wait;
+}
+
 /* Today */
 .gldp-android-today
 {

@@ -37,7 +37,7 @@
 			<div class="content">
 				<div id="about" class="title">about</div>
 				<p>
-					<b>glDatePicker</b> is a simple, customizable, lightweight date picker calendar plugin for <a href="http://jquery.com" target="_blank">jQuery</a> weighing in just over <span class="special">3.5KB compressed</span> (8KB uncompressed).
+					<b>glDatePicker</b> is a simple, customizable, lightweight date picker calendar plugin for <a href="http://jquery.com" target="_blank">jQuery</a> weighing in <span class="special">4KB compressed</span> (11KB uncompressed).
 					<br/>
 					<img src="site/img/screenshot.png" width="575" height="300" alt="Example styles" />
 					<br/>
@@ -50,6 +50,7 @@
 					<li>restricting selection of dates beyond N-days from start date</li>
 					<li>restricting forward / backwards month navigation</li>
 					<li>individual styles per date picker (in case you have multiples on one page)</li>
+					<li>show currently selected date</li>
 				</ul>
 			</div>
 			<!-- END about -->
@@ -84,7 +85,8 @@
 					// Use a custom theme named android
 					$("#date2").glDatePicker(
 					{
-						cssName: "android"
+						cssName: "android",
+						selectedDate: 5
 					});</pre>
 				<br/><br/>
 				<!-- END Example #2 -->
@@ -111,11 +113,13 @@
 				<input type="text" id="date4" class="gldp" />
 				<br/><br/>
 				<pre class="brush:js">
-					// Set last selectable date to start date + 5-days and prevent old date selection
+					// Set last selectable date to start date + 5-days, prevent old date selection
+					// and set selected date to 3-days from start date
 					$("#date4").glDatePicker(
 					{
 						endDate: 5,
 						startDate: new Date("September 5, 2011"),
+						selectedDate: 3,
 						allowOld: false
 					});</pre>
 				<br/><br/>
@@ -198,7 +202,15 @@
 						// -1 : No end date
 						// +ve : A positive number indicating # of days from startDate
 						// Date() : A javascript date, for example: new Date("September 5, 2011")
-						endDate: -1
+						endDate: -1,
+
+						// Set the currently selected date.  Can be an actual date or a number indicating
+						// offset from the startDate value.
+						// Possible values:
+						// -1 : No selected date
+						// +ve : A positive number indicating # of days from startDate
+						// Date() : A javascript date, for example: new Date("September 5, 2011")
+						selectedDate: -1,
 
 						// Show previous and next arrows.  Arrows will be automatically shown or
 						// hidden if set to true.  Set to false to force it never show.
@@ -247,7 +259,10 @@
 					$("#date").glDatePicker("setStartDate", new Date("September 5, 2011"));
 
 					// Set a new end date
-					$("#date").glDatePicker("setEndDate", new Date("September 5, 2011"));</pre>
+					$("#date").glDatePicker("setEndDate", new Date("September 5, 2011"));
+
+					// Set a new selected date
+					$("#date").glDatePicker("setSelectedDate", new Date("September 5, 2011"));</pre>
 			</div>
 			<!-- END usage -->
 
@@ -255,6 +270,8 @@
 			<div class="content">
 				<div id="download" class="title">download</div>
 				<ul>
+					<li>
+						<a href="site/download/glDatePicker-v1.0.zip">glDatePicker-v1.1.zip</a> - Released Aug 6, 2011</li>
 					<li><a href="site/download/glDatePicker-v1.0.zip">glDatePicker-v1.0.zip</a> - Released Aug 1, 2011</li>
 				</ul>
 			</div>
@@ -280,9 +297,10 @@
 	</div>
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
-	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js" type="text/javascript"></script>
-	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushBash.js" type="text/javascript"></script>
+	<script src="site/js/XRegExp.js" type="text/javascript"></script>
+	<script src="site/js/shCore.js" type="text/javascript"></script>
+	<script src="site/js/shBrushJScript.js" type="text/javascript"></script>
+	<script src="site/js/shBrushBash.js" type="text/javascript"></script>
 
 	<script type="text/javascript" src="js/glDatePicker.js"></script>
 	<script type="text/javascript">
@@ -300,7 +318,8 @@
 			// Use a custom theme named android
 			$("#date2").glDatePicker(
 			{
-				cssName: "android"
+				cssName: "android",
+				selectedDate: 5
 			});
 
 			// Set the last selectable date to September 5, 2011
@@ -314,6 +333,7 @@
 			{
 				endDate: 5,
 				startDate: new Date("September 5, 2011"),
+				selectedDate: 3,
 				allowOld: false
 			});
 
