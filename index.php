@@ -156,7 +156,7 @@
 							target.val
 							(
 								newDate.getFullYear() + "-" +
-								newDate.getMonth() + "-" +
+								(newDate.getMonth() + 1) + "-" +
 								newDate.getDate()
 							);
 						}
@@ -242,7 +242,7 @@
 						//         target.val
 						//         (
 						//             newDate.getFullYear() + "-" +
-						//             newDate.getMonth() + "-" +
+						//             (newDate.getMonth() + 1) + "-" +
 						//             newDate.getDate()
 						//         );
 						//     }
@@ -353,7 +353,7 @@
 					target.val
 					(
 						newDate.getFullYear() + "-" +
-						newDate.getMonth() + "-" +
+						(newDate.getMonth() + 1) + "-" +
 						newDate.getDate()
 					);
 				}
