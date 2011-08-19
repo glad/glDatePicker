@@ -28,6 +28,9 @@
 	THE SOFTWARE.
 
 	Changelog:
+		Version 1.2 - Sat Aug 19 2011
+			- Fixed the issue where the end date for a given month was actually that of the previous month's
+
 		Version 1.1 - Sat Aug 6 2011
 			- Last date shown incorrectly after selecting it
 			- Introduces selectedDate option for visually indicating selected date
@@ -188,7 +191,7 @@
 			// Also calculate the weekday to start rendering on
 			var firstDate = new Date(theDate); firstDate.setDate(1);
 			var firstTime = firstDate.getTime();
-			var lastDate = new Date(firstDate); lastDate.setDate(0);
+			var lastDate = new Date(firstDate); lastDate.setMonth(lastDate.getMonth()+1); lastDate.setDate(0);
 			var lastTime = lastDate.getTime();
 			var lastDay = lastDate.getDate();
 
