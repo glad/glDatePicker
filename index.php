@@ -270,8 +270,8 @@
 			<div class="content">
 				<div id="download" class="title">download</div>
 				<ul>
-					<li>
-						<a href="site/download/glDatePicker-v1.1.zip">glDatePicker-v1.1.zip</a> - Released Aug 6, 2011</li>
+					<li><a href="site/download/glDatePicker-v1.2.zip">glDatePicker-v1.2.zip</a> - Released Aug 19, 2011</li>
+					<li><a href="site/download/glDatePicker-v1.1.zip">glDatePicker-v1.1.zip</a> - Released Aug 6, 2011</li>
 					<li><a href="site/download/glDatePicker-v1.0.zip">glDatePicker-v1.0.zip</a> - Released Aug 1, 2011</li>
 				</ul>
 			</div>
