@@ -296,8 +296,8 @@
 					{
 						"position":settings.position,
 						"z-index":settings.zIndex,
-						"left":(target.offset().left),
-						"top":target.offset().top+target.outerHeight(true)
+						"left":(target.position().left),
+						"top":target.position().top+target.outerHeight(true)
 					})
 				);
 			}
