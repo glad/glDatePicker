@@ -54,7 +54,8 @@
 		showPrevNext: true,
 		allowOld: true,
 		showAlways: false,
-		position: "absolute"
+		position: "absolute",
+		sundayIsFirstDay: true
 	};
 
 	var methods =
@@ -208,15 +209,24 @@
 
 			// Render the cells as <TD>
 			var days = "";
+			var shift = settings.sundayIsFirstDay ? 1 : 2;
 			for(var y = 0, i = 0; y < 6; y++)
 			{
 				var row = "";
 
 				for(var x = 0; x < 7; x++, i++)
 				{
-					var p = ((prevDateLastDay - firstDate.getDay()) + i + 1);
+					var p = ((prevDateLastDay - firstDate.getDay()) + i + shift);
 					var n = p - prevDateLastDay;
-					var c = (x == 0) ? "sun" : ((x == 6) ? "sat" : "day");
+          
+          if(settings.sundayIsFirstDay)
+          {
+            var c = (x == 0) ? "sun" : ((x == 6) ? "sat" : "day");
+          }
+          else
+          {
+					  var c = (x == 6) ? "sun" : ((x == 5) ? "sat" : "day");
+				  }
 
 					// If value is outside of bounds its likely previous and next months
 					if(n >= 1 && n <= lastDay)
@@ -278,7 +288,9 @@
 							("<td class='**-prevnext next'>"+(showN ? "►":"")+"</td>")+
 						"</tr>"+
 						"<tr class='**-dow'>"+ /* Day of Week */
-							"<td>Sun</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td>"+
+							(settings.sundayIsFirstDay ?
+							  "<td>Sun</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td>" :
+							  "<td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td><td>Sun</td>") +
 						"</tr>"+days+
 					"</table>"+
 				"<div>";
