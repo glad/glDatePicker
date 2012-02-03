@@ -281,7 +281,7 @@
 							"<td>Sun</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td>"+
 						"</tr>"+days+
 					"</table>"+
-				"<div>";
+				"</div>";
 
 			// Replace css, month-year title
 			html = (html.replace(/\*{2}/gi, "gldp-"+settings.cssName)).replace(/\{MY\}/gi, titleMonthYear);
