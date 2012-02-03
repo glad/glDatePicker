@@ -273,9 +273,9 @@
 				"<div class='**'>"+
 					"<table>"+
 						"<tr>"+ /* Prev Month/Year Next*/
-							("<td class='**-prevnext prev'>"+(showP ? "◄":"")+"</td>")+
+							("<td class='**-prevnext prev'>"+(showP ? "&#9668;":"")+"</td>")+
 							"<td class='**-monyear' colspan='5'>{MY}</td>"+
-							("<td class='**-prevnext next'>"+(showN ? "►":"")+"</td>")+
+							("<td class='**-prevnext next'>"+(showN ? "&#9658;":"")+"</td>")+
 						"</tr>"+
 						"<tr class='**-dow'>"+ /* Day of Week */
 							"<td>Sun</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td>"+
