@@ -28,6 +28,9 @@
 	THE SOFTWARE.
 
 	Changelog:
+		Version 1.3 - Sat Feb 4 2012
+			- Fixed missing div and closing properly on IE7/8
+
 		Version 1.2 - Sat Aug 19 2011
 			- Fixed the issue where the end date for a given month was actually that of the previous month's
 
@@ -83,7 +86,7 @@
 				}
 
 				// Bind click elsewhere to hide
-				$(window).bind("click", function(e)
+				$(document).bind("click", function(e)
 				{
 					methods.hide.apply(self);
 				});
@@ -281,7 +284,7 @@
 							"<td>Sun</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td>"+
 						"</tr>"+days+
 					"</table>"+
-				"<div>";
+				"</div>";
 
 			// Replace css, month-year title
 			html = (html.replace(/\*{2}/gi, "gldp-"+settings.cssName)).replace(/\{MY\}/gi, titleMonthYear);
