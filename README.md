@@ -11,6 +11,7 @@ to use and configure the plugin at: http://code.gautamlad.com/glDatePicker/
 - forward and back navigation
 - current date highlight
 - restricting selection of dates outside of a range
+- restricting to only certain days of the week
 - restricting selection of dates beyond N-days from start date
 - restricting forward / backwards month navigation
 - individual styles per date picker (in case you have multiples on one page)

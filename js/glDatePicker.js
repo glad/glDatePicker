@@ -56,6 +56,7 @@
 		selectedDate: -1,
 		showPrevNext: true,
 		allowOld: true,
+		allowDays: [true, true, true, true, true, true, true],
 		showAlways: false,
 		position: "absolute"
 	};
@@ -235,6 +236,12 @@
 						if(!settings.allowOld)
 						{
 							c = (dateTime < startTime) ? "noday":c;
+						}
+						
+						// Test to see if we are allowed to pick this day of the week
+						if(!settings.allowDays[x])
+						{
+							c = "noday";
 						}
 
 						// Test against end date
