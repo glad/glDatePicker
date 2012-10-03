@@ -243,10 +243,26 @@
 							c = (dateTime > endTime) ? "noday":c;
 						}
 
+						var dateArr = settings.selectedDate;
+
 						// Test against selected date
-						if(settings.selectedDate != -1)
-						{
-							c = (dateTime == selectedTime) ? "selected":c;
+						if(settings.selectedDate != -1) {
+							
+							var testDate = '';
+
+							for (var z = 0; z < dateArr.length; z++) {
+
+								dateArr[z].setHours(0,0,0,0);
+								testDate = dateArr[z].getTime();
+
+								if (dateTime == testDate) {
+									c = "selected";
+								} else {
+									c = c;
+								}
+
+							}
+
 						}
 					}
 					else
