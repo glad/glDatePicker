@@ -61,6 +61,7 @@
 		selectedDate: -1,
 		showPrevNext: true,
 		allowOld: true,
+        restrictToDay: [],
 		showAlways: false,
 		position: "absolute",
 		offset: 0
@@ -254,6 +255,11 @@
 						{
 							c = (dateTime == selectedTime) ? "selected":c;
 						}
+
+                        if(!isAllowedDay(date, settings.restrictToDay))
+                        {
+                            c = "noday";
+                        }
 					}
 					else
 					{
@@ -376,6 +382,16 @@
 				});
 		}
 	};
+
+    function isAllowedDay(dt, allowedDays) {
+        var day = dt.getDay();
+
+        if (allowedDays.length === 0) {
+            return true;
+        }
+
+        return $.inArray(day, allowedDays) > -1;
+    }
 
 	// Plugin entry
 	$.fn.glDatePicker = function(method)
