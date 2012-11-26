@@ -28,6 +28,11 @@
 	THE SOFTWARE.
 
 	Changelog:
+	    Version 1.3.1 - Mon Feb 7 2012 (Larry Myers <larry@larrymyers.com>)
+	        - Use position() instead of offset() so placement is correct when using
+	          with absolutely positioned elements.
+	        - Make sure data settings exist before checking for showAlways
+
 		Version 1.3 - Sat Feb 4 2012
 			- Fixed missing div and closing properly on IE7/8
 
@@ -56,8 +61,10 @@
 		selectedDate: -1,
 		showPrevNext: true,
 		allowOld: true,
+        restrictToDay: [],
 		showAlways: false,
-		position: "absolute"
+		position: "absolute",
+		offset: 0
 	};
 
 	var methods =
@@ -112,7 +119,7 @@
 				var s = $(this).data("settings");
 
 				// Hide if not showing always
-				if(!s.showAlways)
+				if(s && !s.showAlways)
 				{
 					// Hide the calendar and remove class from target
 					$("#"+s.calId).slideUp(200);
@@ -248,6 +255,11 @@
 						{
 							c = (dateTime == selectedTime) ? "selected":c;
 						}
+
+                        if(!isAllowedDay(date, settings.restrictToDay))
+                        {
+                            c = "noday";
+                        }
 					}
 					else
 					{
@@ -299,8 +311,8 @@
 					{
 						"position":settings.position,
 						"z-index":settings.zIndex,
-						"left":(target.offset().left),
-						"top":target.offset().top+target.outerHeight(true)
+						"left":(target.position().left),
+						"top":target.position().top+target.outerHeight(true)+settings.offset
 					})
 				);
 			}
@@ -370,6 +382,16 @@
 				});
 		}
 	};
+
+    function isAllowedDay(dt, allowedDays) {
+        var day = dt.getDay();
+
+        if (allowedDays.length === 0) {
+            return true;
+        }
+
+        return $.inArray(day, allowedDays) > -1;
+    }
 
 	// Plugin entry
 	$.fn.glDatePicker = function(method)
