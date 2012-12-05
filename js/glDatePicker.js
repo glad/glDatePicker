@@ -137,6 +137,7 @@
 		setSelectedDate: function(e)
 		{
 			$(this).data("settings").selectedDate = e;
+            methods.update.apply($(this));
 		},
 
 		// Render the calendar
@@ -362,8 +363,8 @@
 						settings.onChange(target, newDate);
 					}
 
-					// Save selected
-					settings.selectedDate = newDate;
+					// Save selected and redisplay
+        			methods.setSelectedDate.call(target, newDate);
 
 					// Hide calendar
 					methods.hide.apply(target);
