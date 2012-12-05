@@ -137,6 +137,7 @@
 		setSelectedDate: function(e)
 		{
 			$(this).data("settings").selectedDate = e;
+			$(this).data("theDate", e);
             methods.update.apply($(this));
 		},
 
