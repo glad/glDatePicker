@@ -1,55 +1,74 @@
 glDatePicker
 ============
 
-A simple, customizable, lightweight date picker calendar plugin for jQuery
-
-Find the latest download, fully functional examples and instructions on how
-to use and configure the plugin at: http://code.gautamlad.com/glDatePicker/
+An ultra-simple, customizable, light-weight date picker plug-in
+for [jQuery](http://jquery.com/) at just over **7KB compressed** or 25KB uncompressed.
 
 ### Features
 
-- forward and back navigation
-- current date highlight
-- restricting selection of dates outside of a range
-- restricting selection of dates beyond N-days from start date
-- restricting forward / backwards month navigation
-- individual styles per date picker (in case you have multiples on one page)
+- Stylize current date, selected date, special dates and individual days of the week
+- Set data on special dates (that is returned on callback when selected)
+- Repeatable date ranges, individual dates and special dates
+- Restrict selection to range of dates, individual dates, years, months and days of the week
+- Restricting forward / backwards month navigation
+- Automatically jump to respective month on selection (if it is the next or previous month)
+- Offset days of the week (e.g. make Wednesday the first day of the week)
+- Jump to specific month or year through select drop-down
+- Customizable month names and days of week names
+- Callbacks for when date is selected and when calendar is about to show or hide
+- Individual styles per date picker on the same page
+- Render directly below input control (by default) or specify a custom element to render into
 
 
-Installation / Usage
---------------------
+Guide and Demos
+---------------
 
-Extract the js and css folders from the archive.
-
-Then add references to the stylesheet and javascript files in your page:
-
-    <link href="css/default.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="js/glDatePicker.js"></script>
+To view the complete guide and interactive demos of **glDatePicker**, head on to: [http://glad.github.com/glDatePicker/](http://glad.github.com/glDatePicker/)
 
 
-Make sure you have a textbox that you can tie the plugin to:
+Quick Start
+-----------
 
-    <input type="text" id="date" />
+Use the following template HTML as a starting point for using glDatePicker:
 
+``` html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example</title>
+    <link href="styles/glDatePicker.default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <input type="text" id="example" />
 
-Finally bind the plugin to the input textbox and set any options you want:
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="glDatePicker.min.js"></script>
 
-    $("#date").glDatePicker(
-    {
-        allowOld: false,
-        startDate: new Date("September 5, 2011"),
-        endDate: new Date("October 26, 2011"),
-        onChange: function(target, newDate)
+    <script type="text/javascript">
+        $(window).load(function()
         {
-            alert("You selected: " + newDate);
-        }
-    });
+            $('#example').glDatePicker();
+        });
+    </script>
+</body>
+</html>
+```
+
+
+Screenshots
+-----------
+
+![screenshot-1](https://raw.github.com/glad/glDatePicker/gh-pages/assets/img/screenshot-1.png "Default")
+![screenshot-2](https://raw.github.com/glad/glDatePicker/gh-pages/assets/img/screenshot-2.png "Dark Neon")
+![screenshot-3](https://raw.github.com/glad/glDatePicker/gh-pages/assets/img/screenshot-3.png "Default with month selector")
+![screenshot-4](https://raw.github.com/glad/glDatePicker/gh-pages/assets/img/screenshot-4.png "Flat White")
+![screenshot-5](https://raw.github.com/glad/glDatePicker/gh-pages/assets/img/screenshot-5.png "Default with day of week offset and restrictions")
 
 
 License
 -------
 
-Copyright (c) 2011 Gautam Lad.  All rights reserved.
+Copyright (c) 2013 Gautam Lad.  All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
