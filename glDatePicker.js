@@ -555,21 +555,9 @@
 							// Assign date for the cell
 							cell.html(cellDateVal.date);
 
-							// Handle date ranges and collections
-							if(options.selectableDates) {
-								isSelectable = false;
-								$.each(options.selectableDates, function(i, v) {
-									var vDate = getRepeatDate(v, v.date);
-
-									if(vDate.time == cellDateTime) {
-										isSelectable = true;
-										return true;
-									}
-								});
-							}
-
 							// If we have selectable date ranges
-							if(!isSelectable && options.selectableDateRange) {
+							if(options.selectableDateRange) {
+								isSelectable = false;
 								$.each(options.selectableDateRange, function(i, v) {
 									var dateFrom = v.from;
 									var dateTo = (v.to || null);
@@ -585,6 +573,20 @@
 									if(cellDateTime >= dateFrom.time && cellDateTime <= dateTo.time) {
 										isSelectable = true;
 										return true;
+									}
+								});
+							}
+
+							// Handle date ranges and collections
+							if(options.selectableDates) {
+								if(options.selectableDateRange && !isSelectable) {
+									isSelectable = false;
+								}
+								$.each(options.selectableDates, function(i, v) {
+									var vDate = getRepeatDate(v, v.date);
+
+									if(vDate.time == cellDateTime) {
+										return (isSelectable = true);
 									}
 								});
 							}
