@@ -1,76 +1,664 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>glDatePicker by glad</title>
+<head>
+	<title>glDatePicker</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>glDatePicker</h1>
-        <p>A simple, customizable, lightweight date picker calendar plugin for jQuery</p>
+	<!-- Favicon and Fonts START -->
+	<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP0A+4RAAIiIiACqqqoAzMzMAO7u7gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiJFVVVVVTMzMkVVVVVVMzMyRVURVVVVVVJFVRFVVVVVUkVVVVVVVVVSRVVVVVVVVVJFVVVVVQBVUkVVVVVVAFVSQzMzVVVVVVJDMzNVVVVVUkAAAAAAAAACQAAAAAAAAAJDMzMzMzMzMkMzMzMzMzMyREREREREREIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="shortcut icon" />
+	<link href="//fonts.googleapis.com/css?family=Inconsolata|Open+Sans" rel="stylesheet" type="text/css">
+	<!-- Favicon and Fonts END -->
 
-        <p class="view"><a href="https://github.com/glad/glDatePicker">View the Project on GitHub <small>glad/glDatePicker</small></a></p>
+	<!-- Styles START -->
+	<link href="assets/css/reset.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/prettify.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/site.css" rel="stylesheet" type="text/css">
 
+	<link href="dist/css/glDatePicker.default.css" rel="stylesheet" type="text/css">
+	<link href="dist/css/glDatePicker.darkneon.css" rel="stylesheet" type="text/css">
+	<link href="dist/css/glDatePicker.flatwhite.css" rel="stylesheet" type="text/css">
+	<!-- Styles END -->
+</head>
+<body>
+	<!-- Fork me on GitHub START -->
+	<a href="//github.com/glad/glDatePicker"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1000000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+	<!-- Fork me on GitHub END -->
 
-        <ul>
-          <li><a href="https://github.com/glad/glDatePicker/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/glad/glDatePicker/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/glad/glDatePicker">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>Welcome to GitHub Pages.</h3>
+	<!-- Header START -->
+	<div class="header-footer-pad"></div>
+	<div class="block header">
+		<div class="content">
+			<a href="#home" class="menu gldp">glDatePicker</a>&#8226;
+			<a href="#features" class="menu">features</a>&#8226;
+			<a href="#usage" class="menu">usage</a>&#8226;
+			<a href="#examples" class="menu">examples</a>&#8226;
+			<a href="#reference" class="menu">reference</a>&#8226;
+			<a href="#changelog" class="menu">changelog</a>
+		</div>
+	</div>
+	<!-- Header END -->
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+	<!-- Slides/Downloads START -->
+	<div class="section" data-section="home">
+		<div class="block">
+			<div class="content">
+				<div id="slides-download">
+					<div id="slides">
+						<div id="slides-images">
+							<img src="assets/img/screenshot-1.png" alt="Default">
+							<img src="assets/img/screenshot-2.png" alt="Dark Neon">
+							<img src="assets/img/screenshot-3.png" alt="Default with month selector">
+							<img src="assets/img/screenshot-4.png" alt="Flat White">
+							<img src="assets/img/screenshot-5.png" alt="Default with day of week offset and restrictions">
+						</div>
+					</div>
+					<div id="download">
+						<div id="download-info">
+							<p>
+								An ultra-simple, customizable,<br/>
+								light-weight date picker plug-in<br/>
+								for <a href="//jquery.com" target="_blank">jQuery</a>
+								at just over <br/><b>7KB compressed</b> or<br/>
+								25KB uncompressed.
+							</p>
+						</div>
+						<div id="download-button"><a href="dist/zip/glDatePicker-2.0.zip"><span class="special">glDatePicker-2.0.zip</span><br/>( v2.0 &mdash; Tue Jan 1, 2013 )</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Slides/Downloads END -->
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+	<!-- Features START -->
+	<div class="section" data-section="features">
+		<div class="block">
+			<div class="content">
+				<div class="title">Features</div>
+				<div class="body">
+					<ul>
+						<li>Stylize current date, selected date, special dates and individual days of the week</li>
+						<li>Set data on special dates (that is returned on callback when selected)</li>
+						<li>Repeatable date ranges, individual dates and special dates</li>
+						<li>Restrict selection to range of dates, individual dates, years, months and days of the week</li>
+						<li>Restricting forward / backwards month navigation</li>
+						<li>Automatically jump to respective month on selection (if it is the next or previous month)</li>
+						<li>Offset days of the week (e.g. make Wednesday the first day of the week)</li>
+						<li>Jump to specific month or year through select drop-down</li>
+						<li>Customizable month names and days of week names</li>
+						<li>Callbacks for when date is selected and when calendar is about to show or hide</li>
+						<li>Individual styles per date picker on the same page</li>
+						<li>Render directly below input control (by default) or specify a custom element to render into</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Features END -->
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+	<!-- Usage START -->
+	<div class="section" data-section="usage">
+		<!-- Step #1 START -->
+		<div class="block">
+			<div class="content">
+				<div class="title">Step #1 &mdash; Include the glDatePicker stylesheet(s)</div>
+				<div class="body">
+					glDatePicker supports inclusions of multiple style-sheets, all on the same page.
+					This allows you to have multiple date pickers with different styles assigned to
+					each date picker.  To use the default style, include <b><i>glDatePicker.default.css</i></b>
+				</div>
+				<div class="code">
+					<pre class="prettyprint">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;link href="styles/glDatePicker.default.css" rel="stylesheet" type="text/css"&gt;
+&lt;/head&gt;</pre>
+				</div>
+				<div class="body">
+					If you want, you can even create your own styles, by making a copy of
+					<i>glDatePicker.default.css</i> and altering the styles within the file (be sure to
+					rename from gldp-default to gldp-xxxxxx where xxxxxx is the name for your style).
+				</div>
+			</div>
+		</div>
+		<!-- Step #1 END -->
 
-<h3>Designer Templates</h3>
+	<!-- Step #2 START -->
+		<div class="block">
+			<div class="content">
+				<div class="title">Step #2 &mdash; Create your input control(s)</div>
+				<div class="body">
+					Create your input control that will trigger the date picker to become active when it
+					receives focus or the user clicks on it.
+				</div>
+				<div class="code">
+					<pre class="prettyprint">
+&lt;body&gt;
+    &lt;input type="text" id="mydate" /&gt;</pre>
+				</div>
+				<div class="body">
+					Optionally, if you want the date picker to appear in a specific div element, give your input control
+					a unique <i><b>gldp-id</b></i> attribute and reference that id value in your element's <i><b>gldp-target</b></i> attribute.<br/><br/>
+					The example below shows a custom element where the date picker will be rendered.
+				</div>
+				<div class="code">
+					<pre class="prettyprint">
+&lt;body&gt;
+    &lt;input type="text" id="mydate" gldp-id="mydate" /&gt;
+    &lt;div gldp-target="mydate"
+         style="width:400px; height:300px; position:absolute; top:70px; left:100px;"&gt;
+    &lt;/div&gt;</pre>
+				</div>
+			</div>
+		</div>
+		<!-- Step #2 END -->
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+		<!-- Step #3 START -->
+		<div class="block">
+			<div class="content">
+				<div class="title">Step #3 &mdash; Include jQuery and glDatePicker scripts and attach the input</div>
+				<div class="body">
+					Include <b>jQuery</b> script followed by the <b>glDatePicker</b> script.  Then attach <b>glDatePicker</b> to your control(s).<br/><br/>
+					<b>IMPORTANT TIP:</b> You can attach <b>glDatePicker</b> inside <pre>$(function() {...});</pre> or inside <pre>$(document).ready(function() {...});</pre> however depending
+					on your site's layout, the calendar may not position correctly.  For most situations, consider attaching in <pre>$(window).load</pre>.
+				</div>
+				<div class="code">
+					<pre class="prettyprint">
+    &lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="glDatePicker.min.js"&gt;&lt;/script&gt;
 
-<h3>Rather Drive Stick?</h3>
+    &lt;script type="text/javascript"&gt;
+        $(window).load(function()
+        {
+            $('input').glDatePicker();
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+				</div>
+			</div>
+		</div>
+		<!-- Step #3 END -->
+	</div>
+	<!-- Usage END -->
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+	<!-- Examples START -->
+	<div class="section" data-section="examples">
+		<!-- Example #1 START -->
+		<div class="block">
+			<div class="content">
+				<div class="title">Example #1 &mdash; Basic calendar</div>
+				<div class="body">
+					This absolute bare minimum for attaching <b>glDatePicker</b>.  The calendar will use all default options.
+				</div>
+				<div class="example">
+					<div class="code">
+						<pre class="prettyprint">$('example1').glDatePicker();</pre>
+					</div>
+					<div class="output"><input type="text" id="example1" /></div>
+				</div>
+			</div>
+		</div>
+		<!-- Example #1 END -->
 
-<h3>Authors and Contributors</h3>
+		<!-- Example #2 START -->
+		<div class="block" data-section="examples">
+			<div class="content">
+				<div class="title">Example #2 &mdash; Selectable dates and ranges and prevent month/year selection</div>
+				<div class="body">
+					Set a specific selected date and then restrict the selectable dates using ranges and individual dates.
+					This calendar also prevents selection of months and years and traversing to previous and next months.
+				</div>
+				<div class="example">
+					<div class="code">
+						<pre class="prettyprint">
+$('#example2').glDatePicker(
+{
+    showAlways: true,
+    allowMonthSelect: false,
+    allowYearSelect: false,
+    prevArrow: '',
+    nextArrow: '',
+    selectedDate: new Date(2013, 8, 5),
+    selectableDateRange: [
+        { from: new Date(2013, 8, 1),
+            to: new Date(2013, 8, 10) },
+        { from: new Date(2013, 8, 19),
+            to: new Date(2013, 8, 22) },
+    ],
+    selectableDates: [
+        { date: new Date(2013, 8, 24) },
+        { date: new Date(2013, 8, 30) }
+    ]
+});</pre>
+					</div>
+					<div class="output"><input type="text" id="example2" /></div>
+				</div>
+			</div>
+		</div>
+		<!-- Example #2 END -->
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+		<!-- Example #3 START -->
+		<div class="block" data-section="examples">
+			<div class="content">
+				<div class="title">Example #3 &mdash; Custom style, repeating special dates and callback</div>
+				<div class="body">
+					This example shows how you can use a custom style and mark certain dates as special dates.
+					The special dates are also set as repeatable, and their data is returned on a custom callback.
+				</div>
+				<div class="example">
+					<div class="code">
+						<pre class="prettyprint">
+$('#example3').glDatePicker(
+{
+    showAlways: true,
+    cssName: 'darkneon',
+    selectedDate: new Date(2013, 0, 5),
+    specialDates: [
+        {
+            date: new Date(2013, 0, 8),
+            data: { message: 'Meeting every day 8 of the month' },
+            repeatMonth: true
+        },
+        {
+            date: new Date(0, 0, 1),
+            data: { message: 'Happy New Year!' },
+            repeatYear: true
+        },
+    ],
+    onClick: function(target, cell, date, data) {
+        target.val(date.getFullYear() + ' - ' +
+                    date.getMonth() + ' - ' +
+                    date.getDate());
 
-<h3>Support or Contact</h3>
+        if(data != null) {
+            alert(data.message + '\n' + date);
+        }
+    }
+});</pre>
+					</div>
+					<div class="output"><input type="text" id="example3" /></div>
+				</div>
+			</div>
+		</div>
+		<!-- Example #3 END -->
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/glad">glad</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-7701484-3");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+		<!-- Example #4 START -->
+		<div class="block" data-section="examples">
+			<div class="content">
+				<div class="title">Example #4 &mdash; Day of week offset and restricting date selections</div>
+				<div class="body">
+					This example restricts selection to the years 2012, 2013 and 2014, the months September and December and
+					the days Monday, Thursday and Saturday.  The first day of the week is also set to Wednesday.
+				</div>
+				<div class="example">
+					<div class="code">
+						<pre class="prettyprint">
+$('#example4').glDatePicker(
+{
+    showAlways: true,
+    selectedDate: new Date(2013, 8, 5),
+    dowOffset: 3,
+    selectableYears: [2012, 2013, 2014],
+    selectableMonths: [8, 11],
+    selectableDOW: [1, 4, 6]
+});</pre>
+					</div>
+					<div class="output"><input type="text" id="example4" /></div>
+				</div>
+			</div>
+		</div>
+		<!-- Example #4 END -->
 
-  </body>
+		<!-- Example #5 START -->
+		<div class="block">
+			<div class="content">
+				<div class="title">Example #5 &mdash; Interactive demo</div>
+				<div class="body">
+					This demo shows how you can change the behaviour of the calendar on the fly by modifying some
+					of the properties.  Refer to <a href="//github.com/glad/glDatePicker/blob/gh-pages/assets/js/examples.js">examples.js</a> to see the code on how this is done.
+				</div>
+				<div class="example">
+					<div class="code">
+						<label for="example5-showAlways">Show the calendar at all times:</label><br/>
+						<select id="example5-showAlways">
+							<option value="true">True</option>
+							<option value="false">False</option>
+						</select>
+						<br/><br/>
+						<label for="example5-cssName">Calendar style:</label><br/>
+						<select id="example5-cssName">
+							<option value="default">Default</option>
+							<option value="flatwhite">Flat White</option>
+							<option value="darkneon">Dark Neon</option>
+						</select>
+						<br/><br/>
+						<label for="example5-selectableDOW">Selectable days of the week:</label><br/>
+						<select id="example5-selectableDOW">
+							<option value="null">All</option>
+							<option value="[0, 2, 4]">Monday, Wednesday and Friday</option>
+							<option value="[0, 6]">Saturday and Sunday</option>
+						</select>
+						<br/><br/>
+						<label for="example5-dowOffset">First day of the week:</label><br/>
+						<select id="example5-dowOffset">
+							<option value="0">Sunday</option>
+							<option value="1">Monday</option>
+							<option value="2">Tuesday</option>
+							<option value="3">Wednesday</option>
+							<option value="4">Thursday</option>
+							<option value="5">Friday</option>
+							<option value="6">Saturday</option>
+						</select>
+						<br/><br/>
+						<label for="example5-dowNames">Days of the week names:</label><br/>
+						<select id="example5-dowNames">
+							<option value="null">Default</option>
+							<option value="[ 'S', 'M', 'T', 'W', 'T', 'F', 'S' ]">First initial only</option>
+						</select>
+						<br/><br/>
+						<label for="example5-monthNames">Month names:</label><br/>
+						<select id="example5-monthNames">
+							<option value="null">Default</option>
+							<option value="[ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]">Short-form</option>
+						</select>
+					</div>
+					<div class="output"><input type="text" id="example5" /></div>
+				</div>
+			</div>
+		</div>
+		<!-- Example #5 END -->
+	</div>
+	<!-- Examples END -->
+
+	<!-- Reference START -->
+	<div class="section" data-section="reference">
+		<div class="block">
+			<div class="content">
+				<div class="title">Reference</div>
+				<div class="body">
+					When attaching your input, you can pass <b>true</b> to the second call to the <b>glDatePicker</b> constructor
+					to get an instance of <b>glDatePicker</b> returned.  You can also do this while chaining with options:
+				</div>
+				<div class="code">
+					<pre class="prettyprint">
+// Doing it in a single pass
+var myDatePicker = $('#example1').glDatePicker(
+{
+    showAlways: true,
+    selectableDOW: [0, 2, 3]
+}).glDatePicker(true);
+
+// Or you can do it with multiple calls
+$('example1').glDatePicker(
+{
+    showAlways: true,
+    selectableDOW: [0, 2, 3]
+});
+
+var myDatePicker = $('example1').glDatePicker(true);</pre>
+				</div>
+				<div class="body">
+					Getting a variable to <b>glDatePicker</b> will now allow you to call public functions and
+					even change options on the fly, as shown in some examples below:
+				</div>
+				<div class="code">
+					<pre class="prettyprint">
+// This example updates some options (calling render will re-generate the calendar)
+$.extend(myDatePicker.options,
+{
+    cssName: 'darkneon',
+    allowMonthSelect: false,
+    allowYearSelect: false
+});
+myDatePicker.render();
+
+// If the calendar is not set to showAlways=true, you can force it to show by calling the show() function
+myDatePicker.show();</pre>
+				</div>
+				<div class="body">
+					Below is a list of properties that can be passed to <b>glDatePicker</b> to alter its behaviour.<br/>
+					Refer to the comments above the properties to understand what they do.  Default values are shown.
+				</div>
+				<div class="code">
+					<pre class="prettyprint">
+$('input').glDatePicker(
+{
+    // Style to use for the calendar.  This name must match the name used in
+    // the stylesheet, using the class naming convention "gldp-cssName".
+    cssName: 'default',
+
+    // The z-index for the calendar control.
+    zIndex: 1000,
+
+    // Thickness of border (in pixels)
+    borderSize: 1,
+
+    // The number of pixels to offset the calendar's position on the page.
+    calendarOffset: { x: 0, y: 1 },
+
+    // Set to true if you want the calendar to be visible at all times.
+    // NOTE: If your target element is hidden, the calendar will be hidden as well.
+    showAlways: false,
+
+    // Hide the calendar when a date is selected (only if showAlways is set to false).
+    hideOnClick: true,
+
+    // Allow selection of months by clicking on the month in the title.
+    allowMonthSelect: true,
+
+    // Allow selection of years by clicking on the year in the title.
+    allowYearSelect: true,
+
+    // The date that will be treated as 'today'.
+    todayDate: new Date(),
+
+    // The date that will appear selected when the calendar renders.
+    // By default it will be set to todayDate.
+    selectedDate: null,
+
+    // Arrows used for the Previous and Next month buttons on the title.
+    // Set these to blank to hide the arrows completely.
+    prevArrow: '\u25c4',
+    nextArrow: '\u25ba',
+
+    // A collection of dates that can be selectable by the user.
+    // The dates can be a one-time selection or made repeatable by setting
+    // the repeatYear or repeatMonth flag to true.
+    // By default repeatYear and repeatMonth are false.
+    //
+    // This example creates 4-individual dates that can be selected;
+    // The first date will repeat every year, the second date will repeat every
+    // month and year, the third date will repeat every month and the fourth date
+    // will only be selectable one-time and not repeat:
+    //
+    //    selectableDates: [
+    //        { date: new Date(0, 8, 5), repeatYear: true },
+    //        { date: new Date(0, 0, 14), repeatMonth: true, repeatYear: true },
+    //        { date: new Date(2013, 0, 24), repeatMonth: true },
+    //        { date: new Date(2013, 11, 25) },
+    //    ]
+    selectableDates: null,
+
+    // A collection of date ranges that are selectable by the user.
+    // The ranges can be made to repeat by setting repeatYear to true
+    // (repeatMonth is not supported).
+    //
+    // This example will create 3-sets of selectable date ranges with
+    // specific from and to ranges.  The 4th and 5th ranges don't specify
+    // the "to" date in which case the "to" date will be the maximum days for
+    // the month specified in "from".  The 4th and 5th ranges also repeat every year:
+    //
+    //     selectableDateRange: [
+    //         { from: new Date(2013, 1, 1), to: newDate (2013, 2, 1) },
+    //         { from: new Date(2013, 4, 1), to: newDate (2013, 8, 1) },
+    //         { from: new Date(2013, 7, 10), to: newDate (2013, 9, 10) },
+    //         { from: new Date(0, 8, 10), repeatYear: true }
+    //         { from: new Date(0, 9, 1), repeatYear: true }
+    //     ]
+    selectableDateRange: null,
+
+    // Mark certain dates as special dates.  Similar to selectableDates, this
+    // property supports both repeatYear and repeatMonth flags.
+    // Each special date can be styled using custom style names and can have
+    // data attached to it that will be returned in the onClick callback.
+    // The data field can be any custom (JSON style) object.
+    //
+    // This example creates two (repeatable by year) dates with special data in them.
+    // The first date also assigns a special class (which you will have to define).
+    //    specialDates: [
+    //        {
+    //            date: new Date(0, 8, 5),
+    //            data: { message: 'Happy Birthday!' },
+    //            repeatYear: true,
+    //            cssClass: 'special-bday'
+    //        },
+    //        {
+    //            date: new Date(2013, 0, 8),
+    //            data: { message: 'Meeting every day 8 of the month' },
+    //            repeatMonth: true
+    //        }
+    //    ]
+    specialDates: null,
+
+    // List of months that can be selectable, including when the user clicks
+    // on the title to select from the dropdown.
+    // This example only makes two months visible; September and December:
+    //    selectableMonths: [8, 11]
+    selectableMonths : null,
+
+    // List of selectable years.  If not provided, will default to 5-years
+    // back and forward.
+    // This example only allows selection of dates that have year 2012, 2013, 2015
+    //    selectableYears: [2012, 2013, 2015]
+    selectableYears: null,
+
+    // List of selectable days of the week.  0 is Sunday, 1 is Monday, and so on.
+    // This example allows only Sunday, Tuesday, Thursday:
+    //    selectableDOW: [0, 2, 4]
+    selectableDOW : null,
+
+    // Names of the month that will be shown in the title.
+    // Will default to long-form names:
+    //     January, February, March, April, May, June, July,
+    //     August, September, October, November, December
+    monthNames: null,
+
+    // Names of the days of the Week that will be shown below the title.
+    // Will default to short-form names:
+    //     Sun, Mon, Tue, Wed, Thu, Fri, Sat
+    dowNames: null,
+
+    // The day of the week to start the calendar on.  0 is Sunday, 1 is Monday and so on.
+    dowOffset: 0,
+
+    // Callback that will trigger when the user clicks a selectable date.
+    // Parameters that are passed to the callback:
+    //     el : The input element the date picker is bound to
+    //   cell : The cell on the calendar that triggered this event
+    //   date : The date associated with the cell
+    //   data : Special data associated with the cell (if available, otherwise, null)
+    onClick: (function(el, cell, date, data) {
+        el.val(date.toLocaleDateString());
+    }),
+
+    // Callback that will trigger when the user hovers over a selectable date.
+    // This callback receives the same set of parameters as onClick.
+    onHover: function(el, cell, date, data) {},
+
+    // Callback that will trigger when the calendar needs to show.
+    // You can use this callback to animate the opening of the calendar.
+    onShow: function(calendar) { calendar.show(); },
+
+    // Callback that will trigger when the calendar needs to hide.
+    // You can use this callback to animate the hiding of the calendar.
+    onHide: function(calendar) { calendar.hide(); }
+});</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Reference END -->
+
+	<!-- Changelog START -->
+	<div class="section" data-section="changelog">
+		<div class="block">
+			<div class="content">
+				<div class="title">Changelog</div>
+				<div class="body">
+					Version 2.0 &mdash; Tue Jan 1 2013<br/>
+					<ul>
+						<li>Complete re-write (see <a href="#reference">reference</a> section above for changes from previous versions)</li>
+						<li>Numerous features, bug fixes and styles added</li>
+						<li>Updated project page (hosted via <a href="//pages.github.com/" target="_blank">GitHub pages</a>)</li>
+					</ul>
+					<br/>
+					Version 1.3 &mdash; Sat Feb 4 2013<br/>
+					<ul>
+						<li>Fixed missing div and closing properly on IE7/8</li>
+					</ul>
+					<br/>
+
+					Version 1.2 &mdash; Sat Aug 19 2011<br/>
+					<ul>
+						<li>Fixed the issue where the end date for a given month was actually that of the previous month's</li>
+					</ul>
+					<br/>
+
+					Version 1.1 &mdash; Sat Aug 6 2011<br/>
+					<ul>
+						<li>Last date shown incorrectly after selecting it</li>
+						<li>Introduces selectedDate option for visually indicating selected date</li>
+						<li>Selected date can also be set</li>
+						<li>Homepage updated with selectedDate example (in #4)</li>
+						<li>Syntaxhighlighter files referenced locally</li>
+						<li>Updated styles with selectedDate class</li>
+					</ul>
+					<br/>
+
+					Version 1.0 &mdash; Mon Aug 1 2011<br/>
+					<ul>
+						<li>Initial release</li>
+					</ul>
+
+					<br/><br/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Changelog END -->
+
+	<!-- Footer START -->
+	<div class="header-footer-pad"></div>
+	<div class="block footer">
+		<div class="content">
+			<a href="#">Copyright &copy; 2011-2013 Gautam Lad</a> &#8226; <a href="//github.com/glad/" target="_blank">github.com/glad</a>
+		</div>
+	</div>
+	<!-- Footer END -->
+
+	<!-- Scripts START -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="dist/js/glDatePicker.min.js"></script>
+	<script src="assets/js/prettify.js"></script>
+	<script src="assets/js/cycle.js"></script>
+
+	<script src="assets/js/site.js"></script>
+	<script src="assets/js/examples.js"></script>
+	<!-- Scripts END -->
+
+	<!-- Tracking START -->
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		try {
+			var pageTracker = _gat._getTracker("UA-7701484-3");
+			pageTracker._trackPageview();
+		} catch(err) {}
+	</script>
+	<!-- Tracking END -->
+</body>
 </html>
