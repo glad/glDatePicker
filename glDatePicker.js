@@ -579,7 +579,7 @@
 
 							// Handle date ranges and collections
 							if(options.selectableDates) {
-								if(options.selectableDateRange && !isSelectable) {
+								if((options.selectableDateRange && !isSelectable) || (isSelectable && !options.selectableDateRange)) {
 									isSelectable = false;
 								}
 								$.each(options.selectableDates, function(i, v) {
