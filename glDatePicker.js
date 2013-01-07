@@ -37,6 +37,9 @@
 		// The z-index for the calendar control.
 		zIndex: 1000,
 
+		// Width (and height) of the calendar control. If not specified, default to textbox input width.
+		width: null,
+
 		// Thickness of border (in pixels)
 		borderSize: 1,
 
@@ -306,8 +309,8 @@
 				var dowNames = options.dowNames || [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
 				var monthNames = options.monthNames || [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
 
-				// Create cell width based on el size
-				var containerWidth = el.outerWidth();
+				// Create cell width based on el size or width parameter
+				var containerWidth = (isNaN(options.width)) ? el.outerWidth() : options.width;
 				var containerHeight = containerWidth;
 
 				// Create cell size based on container size
