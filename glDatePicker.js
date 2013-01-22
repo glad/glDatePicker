@@ -285,7 +285,7 @@
 					if(userList) {
 						var newList = [];
 						$.each(userList, function(i, v) {
-							if(v >= min && v <= max && newList.indexOf(v) < 0) {
+							if(v >= min && v <= max && $.inArray(v, newList) < 0) {
 								newList.push(v);
 							}
 						});
@@ -405,9 +405,9 @@
 						var dateYear = dateVal.year;
 
 						// Find the month first
-						if(selectableMonths.indexOf(dateMonth) != -1) {
+						if($.inArray(dateMonth, selectableMonths) != -1) {
 							// If year is in our collection, break...
-							if(selectableYears.indexOf(dateYear) != -1) {
+							if($.inArray(dateYear, selectableYears) != -1) {
 								break;
 							}
 							else {
@@ -593,9 +593,9 @@
 
 							// If not active or if not within selectableMonths, set to noday otherwise evaluate accordingly
 							if(!isSelectable ||
-								selectableYears.indexOf(cellDateVal.year) < 0 ||
-								selectableMonths.indexOf(cellDateVal.month) < 0 ||
-								selectableDOW.indexOf(cellDateVal.day) < 0) {
+								$.inArray(cellDateVal.year, selectableYears) < 0 ||
+								$.inArray(cellDateVal.month, selectableMonths) < 0 ||
+								$.inArray(cellDateVal.day, selectableDOW) < 0) {
 								cellClass = 'noday';
 							}
 							else {
@@ -730,7 +730,7 @@
 
 				// Populate month select
 				$.each(monthNames, function(i, v) {
-					if(options.allowMonthSelect && selectableMonths.indexOf(i) != -1) {
+					if(options.allowMonthSelect && $.inArray(i,selectableMonths) != -1) {
 						var o = $('<option/>').html(v).attr('value', i);
 						if(i == firstDateMonth) { o.attr('selected', 'selected');}
 						monthSelect.append(o);
