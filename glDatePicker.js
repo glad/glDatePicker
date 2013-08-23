@@ -329,7 +329,7 @@
 							width: (cellWidth * maxCol) + 'px'
 						});
 
-					$('body').append(calendar);
+					options.container ? options.container.append(calendar) : $('body').append(calendar);
 				}
 				else {
 					if(!eval(calendar.data('is'))) {
