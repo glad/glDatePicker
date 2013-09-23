@@ -186,6 +186,11 @@
 
 	// Our plugin object
 	var glDatePicker = (function() {
+		// Tell if something is in the array.  Uses jQuery's inArray
+		function indexOf(array, value) {
+			return $.inArray(value, array);
+		}
+
 		// Main entry point.  Initialize the plugin
 		function glDatePicker(element, userOptions) {
 			// Grab handle to this
@@ -285,7 +290,7 @@
 					if(userList) {
 						var newList = [];
 						$.each(userList, function(i, v) {
-							if(v >= min && v <= max && newList._indexOf(v) < 0) {
+							if(v >= min && v <= max && indexOf(newList, v) < 0) {
 								newList.push(v);
 							}
 						});
@@ -405,9 +410,9 @@
 						var dateYear = dateVal.year;
 
 						// Find the month first
-						if(selectableMonths._indexOf(dateMonth) != -1) {
+						if(indexOf(selectableMonths, dateMonth) != -1) {
 							// If year is in our collection, break...
-							if(selectableYears._indexOf(dateYear) != -1) {
+							if(indexOf(selectableYears, dateYear) != -1) {
 								break;
 							}
 							else {
@@ -593,9 +598,9 @@
 
 							// If not active or if not within selectableMonths, set to noday otherwise evaluate accordingly
 							if(!isSelectable ||
-								selectableYears._indexOf(cellDateVal.year) < 0 ||
-								selectableMonths._indexOf(cellDateVal.month) < 0 ||
-								selectableDOW._indexOf(cellDateVal.day) < 0) {
+								indexOf(selectableYears, cellDateVal.year) < 0 ||
+								indexOf(selectableMonths, cellDateVal.month) < 0 ||
+								indexOf(selectableDOW, cellDateVal.day) < 0) {
 								cellClass = 'noday';
 							}
 							else {
@@ -730,7 +735,7 @@
 
 				// Populate month select
 				$.each(monthNames, function(i, v) {
-					if(options.allowMonthSelect && selectableMonths._indexOf(i) != -1) {
+					if(options.allowMonthSelect && indexOf(selectableMonths, i) != -1) {
 						var o = $('<option/>').html(v).attr('value', i);
 						if(i == firstDateMonth) { o.attr('selected', 'selected');}
 						monthSelect.append(o);
@@ -810,9 +815,5 @@
 				day: this.getDay()
 			};
 		};
-
-		Array.prototype._indexOf = function(value) {
-			return $.inArray(value, this);
-		}
 	})();
 })();
