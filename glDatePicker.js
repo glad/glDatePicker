@@ -181,7 +181,10 @@
 		onHide: function(calendar) { calendar.hide(); },
 
 		// First date of the month.
-		firstDate: null
+		firstDate: null,
+
+		// Callback for additional next-prev click handling
+		nextPrevCallback: function(){}
 	};
 
 	// Our plugin object
@@ -383,7 +386,8 @@
 
 				var getFirstDate = function(_offset) {
 					// Create start date as the first date of the month
-					var _date = new Date(options.firstDate);
+					var _date = new Date(options.firstDate),
+						tempDate = new Date(_date.getFullYear(), _date.getMonth(), 1);
 
 					// Default to no offset
 					_offset = _offset || 0;
@@ -391,8 +395,14 @@
 					// Find out which months are selectable
 					while(true) {
 						// Adjust date for month offset
-						_date.setMonth(_date.getMonth() + _offset);
-						_date.setDate(Math.min(1, _date._max()));
+						//_date.setMonth(_date.getMonth() + _offset);
+						//_date.setDate(Math.min(1, _date._max()));
+
+						// Set the month first because if number of days are not the same with _date, setMonth() will skip to the month with the same number of days
+						// e.g. if _date is 31 Mar, _offset + 1 will set it to May instead of April
+						tempDate.setMonth(_date.getMonth() + _offset);
+						tempDate.setDate(Math.min(1, _date._max()));
+						_date = tempDate;
 
 						// If not an offset, break out of the loop
 						if(_offset == 0) { break; }
@@ -456,6 +466,7 @@
 
 				var prevCell = $('<div/>')
 								.addClass(monyearClass)
+								.addClass('prev')
 								.css(
 									$.extend({}, cellCSS,
 									{
@@ -464,7 +475,7 @@
 								)
 								.append(
 									$('<a/>')
-										.addClass('prev-arrow' + (showPrev ? '' : '-off'))
+										.addClass('prev-arrow' + (showPrev ? '' : ' off'))
 										.html(options.prevArrow)
 								)
 								.mousedown(function() { return false; })
@@ -472,6 +483,7 @@
 									if(options.prevArrow != '' && showPrev) {
 										e.stopPropagation();
 										setFirstDate(prevFirstDate);
+										options.nextPrevCallback(this);
 									}
 								});
 
@@ -490,6 +502,7 @@
 
 				var nextCell = $('<div/>')
 								.addClass(monyearClass)
+								.addClass('next')
 								.css(
 									$.extend({}, cellCSS,
 									{
@@ -499,7 +512,7 @@
 								)
 								.append(
 									$('<a/>')
-										.addClass('next-arrow' + (showNext ? '' : '-off'))
+										.addClass('next-arrow' + (showNext ? '' : ' off'))
 										.html(options.nextArrow)
 								)
 								.mousedown(function() { return false; })
@@ -507,6 +520,7 @@
 									if(options.nextArrow != '' && showNext) {
 										e.stopPropagation();
 										setFirstDate(nextFirstDate);
+										options.nextPrevCallback(this);
 									}
 								});
 
