@@ -181,7 +181,10 @@
 		onHide: function(calendar) { calendar.hide(); },
 
 		// First date of the month.
-		firstDate: null
+		firstDate: null,
+
+    //Custom width of date picker
+    width: null
 	};
 
 	// Our plugin object
@@ -307,7 +310,7 @@
 				var monthNames = options.monthNames || [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
 
 				// Create cell width based on el size
-				var containerWidth = el.outerWidth();
+				var containerWidth = options.width ? options.width : el.outerWidth();
 				var containerHeight = containerWidth;
 
 				// Create cell size based on container size
