@@ -759,6 +759,10 @@
 				// Run the callback signaling end of the render
 				renderCalback = renderCalback || (function() {});
 				renderCalback();
+				
+				if(typeof options.onRender == 'function') {
+					options.onRender();
+				}
 			}
 		};
 
