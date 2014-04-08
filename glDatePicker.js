@@ -761,7 +761,7 @@
 				renderCalback();
 				
 				if(typeof options.onRender == 'function') {
-					options.onRender();
+					options.onRender(options.firstDate);
 				}
 			}
 		};
