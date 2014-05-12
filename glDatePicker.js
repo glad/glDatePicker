@@ -7,7 +7,7 @@
  *
  * Date: Tue Jan 1 2013
  */
- ;(function() {
+ ;(function($) {
 	$.fn.glDatePicker = function(options) {
 		var pluginName = 'glDatePicker';
 
@@ -819,4 +819,4 @@
 			return $.inArray(value, this);
 		}
 	})();
-})();
+})(jQuery);
