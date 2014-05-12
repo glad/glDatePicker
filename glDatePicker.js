@@ -7,7 +7,7 @@
  *
  * Date: Tue Jan 1 2013
  */
- ;(function() {
+ ;(function($) {
 	$.fn.glDatePicker = function(options) {
 		var pluginName = 'glDatePicker';
 
@@ -329,7 +329,7 @@
 							width: (cellWidth * maxCol) + 'px'
 						});
 
-					$('body').append(calendar);
+					options.container ? options.container.append(calendar) : $('body').append(calendar);
 				}
 				else {
 					if(!eval(calendar.data('is'))) {
@@ -759,6 +759,10 @@
 				// Run the callback signaling end of the render
 				renderCalback = renderCalback || (function() {});
 				renderCalback();
+				
+				if(typeof options.onRender == 'function') {
+					options.onRender(options.firstDate);
+				}
 			}
 		};
 
@@ -815,4 +819,4 @@
 			return $.inArray(value, this);
 		}
 	})();
-})();
+})(jQuery);
