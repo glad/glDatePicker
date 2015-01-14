@@ -629,7 +629,7 @@
 										var hoverData = $(this).data('data');
 
 										// Call callback
-										options.onHover(el, cell, hoverData.date, hoverData.data);
+										options.onHover(el, $(this), hoverData.date, hoverData.data);
 									})
 									.click(function(e) {
 										e.stopPropagation();
