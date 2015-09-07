@@ -391,8 +391,7 @@
 					// Find out which months are selectable
 					while(true) {
 						// Adjust date for month offset
-						_date.setMonth(_date.getMonth() + _offset);
-						_date.setDate(Math.min(1, _date._max()));
+						_date.setMonth(_date.getMonth() + _offset, 1);
 
 						// If not an offset, break out of the loop
 						if(_offset == 0) { break; }
