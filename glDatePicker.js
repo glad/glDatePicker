@@ -181,7 +181,21 @@
 		onHide: function(calendar) { calendar.hide(); },
 
 		// First date of the month.
-		firstDate: null
+		firstDate: null,
+                
+                /*
+                 * Previous years
+                 * Number of years prior to the current that can be listed
+                 * Example: Current year equal 2015 and previous_years equal 5
+                 * First year equal 2010 
+                 */
+                previous_years: 5,
+                
+                //subsequent years
+                subsequent_years: 5,
+                
+                //disable specific dates (array with dates that not must be selected)
+                noSelectTableDates: null
 	};
 
 	// Our plugin object
@@ -301,7 +315,7 @@
 
 				// Selectable (constants)
 				var selectableMonths = getSelectableList(0, 11, options.selectableMonths);
-				var selectableYears = getSelectableList(todayVal.year - 5, todayVal.year + 5, options.selectableYears);
+				var selectableYears = getSelectableList(todayVal.year - options.previous_years, todayVal.year + options.subsequent_years, options.selectableYears);
 				var selectableDOW = getSelectableList(0, 6, options.selectableDOW);
 				var dowNames = options.dowNames || [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
 				var monthNames = options.monthNames || [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
@@ -590,7 +604,17 @@
 									}
 								});
 							}
-
+                                                        
+                                                        //Disable specific dates (no selected)
+                                                        if(options.noSelectTableDates){
+                                                            $.each(options.noSelectTableDates, function (i, v){
+                                                                
+                                                                if(v.date.getTime() == cellDateTime){
+                                                                    isSelectable = false;
+                                                                }
+                                                            });
+                                                        }
+                                                        
 							// If not active or if not within selectableMonths, set to noday otherwise evaluate accordingly
 							if(!isSelectable ||
 								selectableYears._indexOf(cellDateVal.year) < 0 ||
