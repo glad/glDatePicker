@@ -7,7 +7,7 @@ Adds two additional options to the glDatePicker library.
 ### onPrevMonthClick(monthFirstDate)
 
 - Callback functions which will execute when next or previous buttons are clicked.
-- You may use the monthFirstDate argument which will equal the new month's first day. 
+- You can use the monthFirstDate argument which will equal the new month's first day. 
 
 Example
 ---------------
