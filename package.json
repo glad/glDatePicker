@@ -1,6 +1,6 @@
 {
   "name": "gl-datepicker-mod",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "Adds additional features to the glDatePicker jQuery library.",
   "main": "glDatePicker-mod.js",
   "scripts": {
