@@ -6,6 +6,7 @@
  * Released under the MIT license.
  *
  * Date: Tue Jan 1 2013
+ *
  */
  ;(function() {
 	$.fn.glDatePicker = function(options) {
@@ -179,6 +180,14 @@
 		// Callback that will trigger when the calendar needs to hide.
 		// You can use this callback to animate the hiding of the calendar.
 		onHide: function(calendar) { calendar.hide(); },
+
+		// Callback that will trigger when the user clicks next.
+		// You can use the argument in your callback to access the month.
+		onNextMonthClick: function(monthFirstDate){},
+
+		// Callback that will trigger when the user clicks previous.
+		// You can use the argument in your callback to access the month.
+		onPrevMonthClick: function(monthFirstDate){},
 
 		// First date of the month.
 		firstDate: null
@@ -472,6 +481,10 @@
 									if(options.prevArrow != '' && showPrev) {
 										e.stopPropagation();
 										setFirstDate(prevFirstDate);
+
+										if(options.onPrevMonthClick){
+											options.onPrevMonthClick(prevFirstDate);
+										}
 									}
 								});
 
@@ -507,6 +520,10 @@
 									if(options.nextArrow != '' && showNext) {
 										e.stopPropagation();
 										setFirstDate(nextFirstDate);
+
+										if(options.onNextMonthClick){
+											options.onNextMonthClick(nextFirstDate);
+										}
 									}
 								});
 

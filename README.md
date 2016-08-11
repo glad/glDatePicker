@@ -1,3 +1,46 @@
+glDatePicker-mod
+============
+
+Adds two additional options to the glDatePicker library.
+
+### onNextMonthClick(monthFirstDate)
+### onPrevMonthClick(monthFirstDate)
+
+- Callback functions which will execute when next or previous buttons are clicked.
+- You may use the monthFirstDate argument which will equal the new month's first day. 
+
+Example
+---------------
+``` html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>On Month Change Example</title>
+    <link href="styles/glDatePicker.default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <input type="text" id="example" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="glDatePicker.min.js"></script>
+
+    <script type="text/javascript">
+        $(window).load(function(){
+            $('#example').glDatePicker({
+                onNextMonthClick: onMonthChange,
+                onPrevMonthClick: onMonthChange
+            });
+
+            function onMonthChange(monthFirstDate){
+                console.log('The first day of this month is: ' + monthFirstDate);
+            }
+        });
+    </script>
+</body>
+</html>
+```
+
+
 glDatePicker
 ============
 
