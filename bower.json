@@ -1,7 +1,7 @@
 {
   "name": "gl-datepicker-mod",
   "description": "Adds additional features to the glDatePicker jQuery library.",
-  "main": "glDatePicker.js",
+  "main": "glDatePicker.min.js",
   "authors": [
     "Gautam Lad."
   ],
