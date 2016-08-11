@@ -40,6 +40,12 @@ Example
 </html>
 ```
 
+Download
+---------------
+``` shell
+bower install glDatePicker-mod
+```
+
 
 glDatePicker
 ============
