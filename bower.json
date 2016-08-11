@@ -10,7 +10,7 @@
     "jQuery"
   ],
   "homepage": "https://github.com/typicalmike002/glDatePicker-mod",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "ignore": [
     "**/.*",
     "node_modules",
