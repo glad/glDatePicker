@@ -16,13 +16,13 @@ Example
 <html>
 <head>
     <title>On Month Change Example</title>
-    <link href="styles/glDatePicker.default.css" rel="stylesheet" type="text/css">
+    <link href="styles/glDatePicker-mod.default.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <input type="text" id="example" />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="glDatePicker.min.js"></script>
+    <script src="glDatePicker-mod.min.js"></script>
 
     <script type="text/javascript">
         $(window).load(function(){
