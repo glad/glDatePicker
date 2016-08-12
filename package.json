@@ -1,10 +1,10 @@
 {
   "name": "gl-datepicker-mod",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Adds additional features to the glDatePicker jQuery library.",
   "main": "glDatePicker-mod.js",
   "scripts": {
-    "uglify": "uglifyjs glDatePicker.js -o glDatePicker.min.js"
+    "uglify": "uglifyjs glDatePicker-mod.js -o glDatePicker-mod.min.js"
   },
   "repository": {
     "type": "git",

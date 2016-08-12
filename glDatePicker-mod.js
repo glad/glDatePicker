@@ -182,12 +182,20 @@
 		onHide: function(calendar) { calendar.hide(); },
 
 		// Callback that will trigger when the user clicks next.
-		// You can use the argument in your callback to access the month.
+		// The argument will return the first date of the month.
 		onNextMonthClick: function(monthFirstDate){},
 
 		// Callback that will trigger when the user clicks previous.
-		// You can use the argument in your callback to access the month.
+		// The argument will return the first date of the month.
 		onPrevMonthClick: function(monthFirstDate){},
+
+		// Callback that triggers when user uses options to change the month/year.
+		// The argument will return the first date of the month.
+		onMonthYearSelect: function(monthFirstDate){},
+
+		// Callback that triggers whenever the calendar.
+		// The argument will return the first date of the month.
+		onCalendarRefresh: function(monthFirstDate){},
 
 		// First date of the month.
 		firstDate: null
@@ -482,9 +490,8 @@
 										e.stopPropagation();
 										setFirstDate(prevFirstDate);
 
-										if(options.onPrevMonthClick){
-											options.onPrevMonthClick(prevFirstDate);
-										}
+										options.onPrevMonthClick(prevFirstDate);
+										options.onCalendarRefresh(prevFirstDate);
 									}
 								});
 
@@ -521,9 +528,8 @@
 										e.stopPropagation();
 										setFirstDate(nextFirstDate);
 
-										if(options.onNextMonthClick){
-											options.onNextMonthClick(nextFirstDate);
-										}
+										options.onNextMonthClick(nextFirstDate);
+										options.onCalendarRefresh(nextFirstDate);
 									}
 								});
 
@@ -714,6 +720,8 @@
 				// Helper function when select is updated
 				var onYearMonthSelect = function() {
 					options.firstDate = new Date(yearSelect.val(), monthSelect.val(), 1);
+					options.onMonthYearSelect(options.firstDate);
+					options.onCalendarRefresh(options.firstDate);
 					self.render();
 				};
 
