@@ -9,7 +9,9 @@
  *
  * This version will be disabled while in sharepoint edit mode.
  */
-if (!SP.Ribbon.PageState.Handlers.isInEditMode()) {
+
+if (!document.forms[MSOWebPartPageFormName].MSOLayout_InDesignMode.value) {
+
 	 ;(function() {
 		$.fn.glDatePicker = function(options) {
 			var pluginName = 'glDatePicker';
