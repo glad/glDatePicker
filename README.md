@@ -1,6 +1,6 @@
 glDatePicker-mod
 ============
-###### v1.1.2
+###### v1.1.3
 Adds four additional options to the glDatePicker library which all take a callback function allowing for extendable features.  Each function returns the full date of the first day in the month/year being changed to (monthFirstDate).
 
 ### onNextMonthClick(monthFirstDate)
