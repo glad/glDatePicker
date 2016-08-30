@@ -1,3 +1,72 @@
+glDatePicker-mod
+============
+###### v1.1.3
+Adds four additional options to the glDatePicker library which all take a callback function allowing for extendable features.  Each function returns the full date of the first day in the month/year being changed to (monthFirstDate).
+
+### onNextMonthClick(monthFirstDate)
+### onPrevMonthClick(monthFirstDate)
+
+- Callback functions which will execute when next or previous buttons are clicked.
+
+### onMonthYearSelect(monthFirstDate)
+
+- Callback function that executes when the user changes the month through the options.
+
+### onOutDayClick(monthFirstDate)
+
+- Callback function that exectues when a user clicks on a date not part of the current month.
+
+### onCalendarRefresh(monthFirstDate)
+
+- Callback function that combines all four of the previous features into a single option.
+
+Example
+---------------
+``` html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>On Month Change Example</title>
+    <link href="styles/glDatePicker-mod.default.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <input type="text" id="example1" />
+    <input type="text" id="example2" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="glDatePicker-mod.min.js"></script>
+
+    <script type="text/javascript">
+        $(window).load(function(){
+            
+            // Both of these examples will return the same results:
+
+            $('#example1').glDatePicker({
+                onNextMonthClick: onMonthChange,
+                onPrevMonthClick: onMonthChange,
+                onMonthYearSelect: onMonthChange
+            });
+
+            $('#example2').glDatePicker({
+                onCalendarRefresh: onMonthChange
+            });
+
+            function onMonthChange(monthFirstDate){
+                console.log('The first day of this month is: ' + monthFirstDate);
+            }
+        });
+    </script>
+</body>
+</html>
+```
+
+Download
+---------------
+``` shell
+bower install glDatePicker-mod
+```
+
+
 glDatePicker
 ============
 

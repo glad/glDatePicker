@@ -1,13 +1,14 @@
 /*!
- * glDatePicker v2.0
- * http://glad.github.com/glDatePicker/
- *
- * Copyright (c) 2013 Gautam Lad.  All rights reserved.
- * Released under the MIT license.
- *
- * Date: Tue Jan 1 2013
- */
- ;(function() {
+* glDatePicker v2.0
+* http://glad.github.com/glDatePicker/
+*
+* Copyright (c) 2013 Gautam Lad.  All rights reserved.
+* Released under the MIT license.
+*
+* Date: Tue Jan 1 2013
+*/
+
+;(function() {
 	$.fn.glDatePicker = function(options) {
 		var pluginName = 'glDatePicker';
 
@@ -179,6 +180,26 @@
 		// Callback that will trigger when the calendar needs to hide.
 		// You can use this callback to animate the hiding of the calendar.
 		onHide: function(calendar) { calendar.hide(); },
+
+		// Callback that will trigger when the user clicks next.
+		// The argument will return the first date of the month.
+		onNextMonthClick: function(monthFirstDate){},
+
+		// Callback that will trigger when the user clicks previous.
+		// The argument will return the first date of the month.
+		onPrevMonthClick: function(monthFirstDate){},
+
+		// Callback that triggers when user uses options to change the month/year.
+		// The argument will return the first date of the month.
+		onMonthYearSelect: function(monthFirstDate){},
+		
+		// Callback that triggers whenever the calendar month changes due to user
+		// click on a date that isn't equal to the same month as the current view.
+		onOutDayClick: function(monthFirstDate){},
+
+		// Callback that triggers whenever the calendar changes.
+		// The argument will return the first date of the month.
+		onCalendarRefresh: function(monthFirstDate){},
 
 		// First date of the month.
 		firstDate: null
@@ -472,6 +493,9 @@
 									if(options.prevArrow != '' && showPrev) {
 										e.stopPropagation();
 										setFirstDate(prevFirstDate);
+
+										options.onPrevMonthClick(prevFirstDate);
+										options.onCalendarRefresh(prevFirstDate);
 									}
 								});
 
@@ -507,6 +531,9 @@
 									if(options.nextArrow != '' && showNext) {
 										e.stopPropagation();
 										setFirstDate(nextFirstDate);
+
+										options.onNextMonthClick(nextFirstDate);
+										options.onCalendarRefresh(nextFirstDate);
 									}
 								});
 
@@ -649,6 +676,13 @@
 
 										// Call callback
 										options.onClick(el, $(this), clickedData.date, clickedData.data);
+
+										// Callback for when clicking an outday changes the current month.
+										if ($(this).hasClass('outday')) {
+											setFirstDate(clickedData.date);
+											options.onOutDayClick(options.firstDate);
+											options.onCalendarRefresh(options.firstDate);
+										}
 									});
 							}
 						}
@@ -697,6 +731,8 @@
 				// Helper function when select is updated
 				var onYearMonthSelect = function() {
 					options.firstDate = new Date(yearSelect.val(), monthSelect.val(), 1);
+					options.onMonthYearSelect(options.firstDate);
+					options.onCalendarRefresh(options.firstDate);
 					self.render();
 				};
 
