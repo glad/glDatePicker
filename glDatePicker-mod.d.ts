@@ -41,6 +41,7 @@ interface GlDatePickerOptions {
     onNextMonthClick?: (inputElement: JQuery, cell: JQuery, date: Date, data: any) => void;
     onPrevMonthClick?: (inputElement: JQuery, cell: JQuery, date: Date, data: any) => void;
     onMonthYearSelect?: (inputElement: JQuery, cell: JQuery, date: Date, data: any) => void;
+    onOutDayClick?: (inputElement: JQuery, cell: JQuery, date: Date, data: any) => void;
     onCalendarRefresh?: (inputElement: JQuery, cell: JQuery, date: Date, data: any) => void;
     selectableMonths?: number[];
     selectableYears?: number[];

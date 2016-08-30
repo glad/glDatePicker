@@ -10,6 +10,8 @@
  * This version will be disabled while in sharepoint edit mode.
  */
 
+// Disables the entire calendar from loading while in SharePoint 2013 edit mode.
+// This fixes a bug where the calendar will stop adding webparts from working.
 if (!document.forms[MSOWebPartPageFormName].MSOLayout_InDesignMode.value) {
 
 	 ;(function() {
@@ -196,8 +198,12 @@ if (!document.forms[MSOWebPartPageFormName].MSOLayout_InDesignMode.value) {
 			// Callback that triggers when user uses options to change the month/year.
 			// The argument will return the first date of the month.
 			onMonthYearSelect: function(monthFirstDate){},
+			
+			// Callback that triggers whenever the calendar month changes due to user
+			// click on a date that isn't equal to the same month as the current view.
+			onOutDayClick: function(monthFirstDate){},
 
-			// Callback that triggers whenever the calendar.
+			// Callback that triggers whenever the calendar changes.
 			// The argument will return the first date of the month.
 			onCalendarRefresh: function(monthFirstDate){},
 
@@ -676,6 +682,13 @@ if (!document.forms[MSOWebPartPageFormName].MSOLayout_InDesignMode.value) {
 
 											// Call callback
 											options.onClick(el, $(this), clickedData.date, clickedData.data);
+
+											// Callback for when clicking an outday changes the current month.
+											if ($(this).hasClass('outday')) {
+												setFirstDate(clickedData.date);
+												options.onOutDayClick(options.firstDate);
+												options.onCalendarRefresh(options.firstDate);
+											}
 										});
 								}
 							}
